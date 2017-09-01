@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<!--[if IE 7]> <html class="Ie7 Ie" dir="ltr" lang="zh-TW"> <![endif]-->
+<!--[if IE 8]> <html class="Ie8 Ie" dir="ltr" lang="zh-TW"> <![endif]-->
+<!--[if IE 9]> <html class="Ie9 Ie" dir="ltr" lang="zh-TW"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html dir="ltr" lang="zh-TW" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml"> <!--<![endif]-->
+
+<!-- Mirrored from backlogtool.com/git-tutorial/tw/reference/basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 01 Sep 2017 09:07:37 GMT -->
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="Git, 版本控制，甘特圖，燃盡圖，專案管理，subversion,貝格樂">
+	<meta name="description" content="基本操作 | 歡迎來到超級簡單的Git入門指南，讓我們一起學習如何使用Git版本控制系統吧！">
+    <title>基本操作 | 連猴子都能懂的Git入門指南  | 貝格樂（Backlog）</title>
+    <meta property="og:title" content="基本操作 | 連猴子都能懂的Git入門指南  | 貝格樂（Backlog）">
+    <meta property="og:description" content="基本操作 | 歡迎來到超級簡單的Git入門指南，讓我們一起學習如何使用Git版本控制系統吧！">
+    <meta property="og:url" content="http://backlogtool.com/git-guide/tw/reference/basic.html">
+    <meta property="og:image" content="../ogp_dft.png">
+    <meta property="og:type" content="article">
+    <meta property="fb:app_id" content="417292271624387">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" media="all" href="../style.css">
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'../../../../www.googletagmanager.com/gtm5445.html?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TSQPXBL');</script>
+<!-- End Google Tag Manager -->    <!--[if lt IE 9]>
+        <script src="./../js/lib/html5.js" type="text/javascript"></script>
+    <![endif]-->
+</head>
+<body class="Ref">
+    
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TSQPXBL"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->    <div id="container">
+        
+        <header id="header" role="banner">
+            <div class="Inner">
+                <h1><a href="../index.html">連猴子都能懂的Git入門指南</a></h1>
+                <a class="btn-contents" href="../contents/index.html"><span>目錄</span><span class="Bg"></span></a>
+                <ul id="socials" class="Socials Cf">
+                    <!-- #socials -->
+                </ul>
+
+                <nav id="nav">
+                    <ul class="Cf">
+                        <li><a href="../intro/intro1_1.html">入門篇</a></li>
+                        <li><a href="../stepup/stepup1_1.html">進階篇</a></li>
+                        <li><a href="index.html">Git命令快速參考</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- #header -->
+        </header>
+
+        <div id="content">
+            <div id="main" role="main">
+                <ol class="Breadcrumbs">
+                    <li><a href="index.html">Git命令快速參考 TOP</a> &gt; </li>
+                    <li>基本操作</li>
+                </ol>
+                <article class="Ref-post Basic">
+                    <h1>基本操作</h1>
+                    <ul class="Page-nav">
+                        <li><a href="#sec1">建立數據庫</a></li>
+                        <li><a href="#sec2">註冊檔案或目錄到索引</a></li>
+                        <li><a href="#sec3">提交添加到索引的檔案</a></li>
+                        <li><a href="#sec4">顯示修改檔案清單</a></li>
+                        <li><a href="#sec5">查看修改檔案的差異</a></li>
+                        <li><a href="#sec6">顯示提交記錄</a></li>
+                        <li><a href="#sec7">查看提交的詳細記錄</a></li>
+                        <li><a href="#sec8">修改/移動一個檔案/目錄的名稱</a></li>
+                        <li><a href="#sec9">刪除檔案</a></li>
+                        <li><a href="#sec10">從工作目錄刪除非管理對象的檔案</a></li>
+                        <li><a href="#sec11">還原在工作目錄已更改的檔案</a></li>
+                        <li><a href="#sec12">刪除已註冊到索引的檔案</a></li>
+                        <li><a href="#sec13">只註冊已提交過的檔案到索引</a></li>
+                    </ul>
+                    <section id="sec1" class="Item">
+                        <h1>建立數據庫</h1>
+                        <div class="Entry-content">
+                            <pre>$ git init</pre>
+                            <p>在要建立數據庫的目錄裡執行init命令。</p>
+                            <p><a href="../intro/intro2_3.html">入門篇 【教學1 Git的基本介紹 】 新建數據庫</a></p>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <section id="sec2" class="Item">
+                        <h1>註冊檔案或目錄到索引</h1>
+                        <div class="Entry-content">
+                            <pre class="Mg-b15">$ git add &lt;filepattern&gt;</pre>
+                            <p>在 filepattern 可以直接指定檔案名稱，也可以給予指令例如 "*.txt"的通用字元。如果給予指令 "."的話，可以將子目錄裡的所有檔案註冊到索引裡。</p>
+                            <p>加上 -p 參數，可以選擇只註冊檔案中修改的其中一部分。 加上 -i 參數的話，會以互動方式詢問要註冊在索引裡的檔案。</p>
+                            <p><a href="../intro/intro2_4.html">入門篇 【教學1 Git的基本介紹】 提交檔案</a></p>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <section id="sec3" class="Item">
+                        <h1>提交添加到索引的檔案</h1>
+                        <div class="Entry-content">
+                            <pre class="Mg-b15">$ git commit</pre>
+                            <p>添加-a參數，就可以檢測出有修改的檔案(不包括新增的檔案)，將其加入索引並提交。這些操作只要一個指令就可以完成了。<br />加上-m參數，就可以指令提交“提交訊息”。如果不添加-m參數，就會啟動修改提交訊息的編輯器。</p>
+                            <p><a href="../intro/intro2_4.html">入門篇 【教學1 Git的基本介紹】 提交檔案</a></p>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <section id="sec4" class="Item">
+                        <h1>顯示修改檔案清單</h1>
+                        <div class="Entry-content">
+                            <pre class="Mg-b15">$ git status</pre>
+                            <p>加上 -s 參數，僅會顯示已修改的檔案名稱。<br />如果在 -s 後再加上 -b 參數，則會顯示分支的名稱。</p>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <section id="sec5" class="Item">
+                        <h1>查看修改檔案的差異</h1>
+                        <div class="Entry-content">
+                            <pre class="Mg-b15">$ git diff</pre>
+                            <p>僅使用 "diff" 命令時，會顯示工作目錄和索引的差異。<br />加上 --cached 參數，會顯示索引與 HEAD 的差異。<br />如果指定特定的HEAD 或提交，則可以顯示工作目錄和指定HEAD/提交之間的差異。</p>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <section id="sec6" class="Item">
+                        <h1>顯示提交記錄</h1>
+                        <div class="Entry-content">
+                            <pre class="Mg-b15">$ git log</pre>
+                            <p>僅使用“log" 將顯示分支的提交列表。<br />如果要查看特定檔案的提交記錄，請指定檔案名稱。</p>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                     <section id="sec7" class="Item">
+                        <h1>查看提交的詳細記錄</h1>
+                        <div class="Entry-content">
+                            <pre class="Mg-b15">$ git show &lt;commit&gt;</pre>
+                            <p>請使用show命令，show命令的參數可以指定log命令參閱的提交與HEAD。</p>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                     <section id="sec8" class="Item">
+                        <h1>修改/移動一個檔案/目錄的名稱</h1>
+                        <div class="Entry-content">
+                            <pre>$ git mv &lt;oldfilename&gt; &lt;newfilename&gt;</pre>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                     <section id="sec9" class="Item">
+                        <h1>刪除檔案</h1>
+                        <div class="Entry-content">
+                            <pre>$ git rm &lt;file&gt;</pre>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                     <section id="sec10" class="Item">
+                        <h1>從工作目錄刪除非管理對象的檔案</h1>
+                        <div class="Entry-content">
+                            <pre class="Mg-b15">$ git clean</pre>
+                            <p>加上 -n 參數，可以查看將被刪除的檔案。<br />若添加 -f 參數則會立即刪除檔案。</p>
+                            <p>在預設情況下 .gitignore 檔案中所列之檔案/目錄並不在刪除範圍內。不過如果加上-x 參數， .gitignore 檔案中的檔案/目錄也會從工作目錄中刪除。</p>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <section id="sec11" class="Item">
+                        <h1>還原在工作目錄已更改的檔案</h1>
+                        <div class="Entry-content">
+                            <pre>$ git checkout -- &lt;file&gt;</pre>
+                    </div>
+                    <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <section id="sec12" class="Item">
+                        <h1>刪除已註冊到索引的檔案</h1>
+                        <div class="Entry-content">
+                            <pre>$ git reset HEAD -- &lt;file&gt;</pre>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <section id="sec13" class="Item">
+                        <h1>只註冊已提交過的檔案到索引</h1>
+                        <div class="Entry-content">
+                            <pre>$ git add -u</pre>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <footer class="Paging">
+                        <div class="Nav-prev">
+                            <a href="index.html"><span class="Bg"></span><span><b>返回頂部</b></span></a>
+                        </div>
+                    </footer>
+                </article>
+                <!-- #main -->
+            </div>
+
+            <div id="sub" role="complementary">
+                <aside id="refSideMenu" class="Side-menu">
+                    <ul>
+                        <li><a href="basic.html">基本操作</a></li>
+                        <li><a href="branch.html">操作分支</a></li>
+                        <li><a href="tag.html">操作標籤</a></li>
+                        <li><a href="ssh.html">設定SSH連接  </a></li>
+                        <li><a href="log.html">操作提交記錄</a></li>
+                        <li><a href="remote.html">遠端操作</a></li>
+                        <li><a href="config.html">Git設定</a></li>
+                        <li><a href="stash.html">Stash（暫存）</a></li>
+                        <li><a href="git-svn.html">Git 和 Subversion的相比</a></li>
+                        <li><a href="trouble-shooting.html">疑難排解</a></li>
+                    </ul>
+                </aside>
+                <!-- #sub -->
+            </div>
+
+            <!-- #content -->
+        </div>
+
+        
+        <footer id="footer" role="contentinfo">
+            <div class="Row">
+                <div class="Col Right">
+                    <div class="Languages">
+                        <div class="Languages-inner Clearfix">
+                            <span class="Pick-language">繁體中文</span>
+                            <span class="Pick-down"></span>
+                            <select id="languageMenu" name="languageMenu" class="Language-menu" onchange="selectLanguage(this)">
+                                <option value="http://backlogtool.com/git-tutorial/en/">English</option>
+                                <option value="http://www.backlog.jp/git-guide/">日本語</option>
+                                <option value="http://backlogtool.com/git-tutorial/cn/">简体中文</option>
+                                <option selected value="../index.html">繁體中文</option>
+                                <option value="http://backlogtool.com/git-tutorial/kr/">한국어</option>
+                                <option value="http://backlogtool.com/git-tutorial/vn/">Tiếng Việt</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- .Languages-area -->
+                    <ul class="Social-icon">
+                        <li><a href="https://www.facebook.com/BacklogTW" target="_blank">
+                        <img src="../img/common/icon/ico_facebook.png" srcset="../img/common/icon/ico_facebook.png 1x, ../img/common/icon/ico_facebook@2x.png 2x" width="36" height="36" alt="Facebook"></a></li><li><a href="https://twitter.com/BacklogTaiwan" target="_blank"><img src="../img/common/icon/ico_twitter.png"
+                    srcset="../img/common/icon/ico_twitter.png 1x, ../img/common/icon/ico_twitter@2x.png 2x" width="36" height="36" alt="twitter"></a></li>
+                    </ul>
+                </div>
+                <div class="Col Left">
+                    <div class="Powered">Powered by<br>
+                        <a href="http://backlogtool.com/tw/" target="_blank" title="貝格樂">
+                        <img src="../img/common/logo_backlog.png" srcset="../img/common/logo_backlog.png 1x, ../img/common/logo_backlog@2x.png 2x" width="142" height="42" alt="貝格樂 - 所有團隊成員的專案管理工具"></a>
+                    </div>
+                    <p class="Nulab">Copyright &copy; 2004-2017 Nulab Inc. All rights reserved. </p>
+                </div>
+            </div>
+            <!-- #footer -->
+        </footer>
+
+        <div class="Top-link"><a id="topLink" href="#">UP</a></div>
+        <div id="showUserVoicePopupTab" data-uv-trigger="smartvote">
+            <a href="http://feedback.backlogtool.com/forums/277856" title="">Git入門的反饋</a>
+        </div>
+
+        <!-- #container -->
+    </div>
+    
+    <script src="../../../../ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/lib/jquery.js"><\/script>')</script>
+    <script type="text/javascript" src="../js/jquery.config.js"></script>
+    <script type="text/javascript">
+        function selectLanguage(lang) {
+            window.location.href = lang.options[lang.selectedIndex].value;
+        }
+    </script>
+    <script>(function(){
+            var uv=document.createElement('script');
+            uv.type='text/javascript';
+            uv.async=true;
+            uv.src='../../../../widget.uservoice.com/Yox3591xmDUTIQiafbmDQA.js';
+            var s=document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(uv,s);
+            uv.onload = uv.onreadystatechange = function(){
+                var state = uv.readyState;
+                if(!state || /complete|loaded/.test(state)){
+                    UserVoice.push(['set', {
+                        forum_id: '277856'
+                    }]);
+                    uv.onload = uv.onreadystatechange = null;
+                }
+            }
+        })();</script>
+    <script type="text/javascript">
+        var tweetBtn, googleBtn, likeBtn;
+        tweetBtn =
+            '<li class="Twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://backlogtool.com/git-guide/tw/" data-text="連猴子都能懂的Git入門指南 | 貝格樂（Backlog）" data-via="BacklogTaiwan" data-lang="zh-tw">推文</a>'
+            + '<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?"http":"https";if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document, "script", "twitter-wjs");<\/script></li>';
+        likeBtn =
+            '<li class="Facebook"><div id="fb-root"></div>'
+            +'<script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.async = true; js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&appId=417292271624387&version=v2.0"; fjs.parentNode.insertBefore(js, fjs); }(document, "script", "facebook-jssdk"));<\/script>'
+            +'<div class="fb-like" data-href="http://backlogtool.com/git-guide/tw/" data-send="false" data-layout="button_count" data-width="110" data-show-faces="false"></div></li>';
+        googleBtn =
+            '<li class="Google"><g:plusone size="medium" href="http://backlogtool.com/git-guide/tw/"></g:plusone>'
+            +'<script type="text/javascript"> window.___gcfg = {lang: "zh-TW"}; (function() { var po = document.createElement("script"); po.type = "text/javascript"; po.async = true; po.src = "https://apis.google.com/js/plusone.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(po, s); })(); <\/script></li>';
+
+        setTimeout(function() {
+            $('#socials').append(tweetBtn + likeBtn + googleBtn);
+        },1000);
+    </script>
+    <script type="text/javascript" src="../js/reference.js"></script>
+</body>
+
+<!-- Mirrored from backlogtool.com/git-tutorial/tw/reference/basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 01 Sep 2017 09:07:37 GMT -->
+</html>

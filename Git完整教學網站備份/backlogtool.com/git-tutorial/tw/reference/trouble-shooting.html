@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<!--[if IE 7]> <html class="Ie7 Ie" dir="ltr" lang="zh-TW"> <![endif]-->
+<!--[if IE 8]> <html class="Ie8 Ie" dir="ltr" lang="zh-TW"> <![endif]-->
+<!--[if IE 9]> <html class="Ie9 Ie" dir="ltr" lang="zh-TW"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html dir="ltr" lang="zh-TW" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml"> <!--<![endif]-->
+
+<!-- Mirrored from backlogtool.com/git-tutorial/tw/reference/trouble-shooting.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 01 Sep 2017 09:07:40 GMT -->
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="Git, 版本控制，甘特圖，燃盡圖，專案管理，subversion,貝格樂">
+	<meta name="description" content="疑難排解 | 歡迎來到超級簡單的Git入門指南，讓我們一起學習如何使用Git版本控制系統吧！">
+    <title>疑難排解 | 連猴子都能懂的Git入門指南  | 貝格樂（Backlog）</title>
+    <meta property="og:title" content="疑難排解 | 連猴子都能懂的Git入門指南  | 貝格樂（Backlog）">
+    <meta property="og:description" content="疑難排解 | 歡迎來到超級簡單的Git入門指南，讓我們一起學習如何使用Git版本控制系統吧！">
+    <meta property="og:url" content="http://backlogtool.com/git-guide/tw/reference/trouble-shooting.html">
+    <meta property="og:image" content="../ogp_dft.png">
+    <meta property="og:type" content="article">
+    <meta property="fb:app_id" content="417292271624387">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" media="all" href="../style.css">
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'../../../../www.googletagmanager.com/gtm5445.html?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TSQPXBL');</script>
+<!-- End Google Tag Manager -->    <!--[if lt IE 9]>
+        <script src="./../js/lib/html5.js" type="text/javascript"></script>
+    <![endif]-->
+</head>
+<body class="Ref">
+    
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TSQPXBL"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->    <div id="container">
+        
+        <header id="header" role="banner">
+            <div class="Inner">
+                <h1><a href="../index.html">連猴子都能懂的Git入門指南</a></h1>
+                <a class="btn-contents" href="../contents/index.html"><span>目錄</span><span class="Bg"></span></a>
+                <ul id="socials" class="Socials Cf">
+                    <!-- #socials -->
+                </ul>
+
+                <nav id="nav">
+                    <ul class="Cf">
+                        <li><a href="../intro/intro1_1.html">入門篇</a></li>
+                        <li><a href="../stepup/stepup1_1.html">進階篇</a></li>
+                        <li><a href="index.html">Git命令快速參考</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- #header -->
+        </header>
+
+        <div id="content">
+            <div id="main" role="main">
+                <ol class="Breadcrumbs">
+                    <li><a href="index.html">Git命令快速參考 TOP</a> &gt; </li>
+                    <li>疑難排解</li>
+                </ol>
+                <article class="Ref-post Trouble">
+                    <h1>疑難排解</h1>
+                    <ul class="Page-nav">
+                        <li><b>SSH</b></li>
+                        <li><a href="#sec1">用SSH連接遠端數據庫時會顯示”Permission denied (publickey).”</a></li>
+                        <li><b>HTTPS</b></li>
+                        <li><a href="#sec2">無法透過HTTPS URL 複製遠端數據庫</a></li>
+                        <li><a href="#sec3">HTTPS執行push/pull時每次都需要密碼</a></li>
+                        <li><b>SSH/HTTPS 共通</b></li>
+                        <li><a href="#sec4">Push後，無法將變更上傳到遠端數據庫</a></li>
+                    </ul>
+                    <section id="sec1" class="Item">
+                        <h1>用SSH連接遠端數據庫時會顯示”Permission denied (publickey).”</h1>
+                        <div class="Entry-content">
+                            <p>首先，請您先確認：</p>
+                            <ul>
+                                <li>URL是否正確嗎？</li>
+                                <li>本地端機器的私密金鑰（secret key )設定是否正確嗎？</li>
+                                <li>遠端的公開金鑰設定是否正確嗎？</li>
+                            </ul>
+                            <p>欲確認貝格樂數據庫的私密金鑰/公開金鑰的設定是否正確，請執行以下的命令：</p>
+                            <pre class="Mg-b15">$ ssh &lt;space&gt;@&lt;space&gt;.git.backlogtool.com</pre>
+                            <p>在 &lt;space&gt; 內設定特地位址。（例如您的貝格樂空間名稱為"demo.backlogtool.com" 您可以將其命名為 “demo@demo.git.backlogtool.com"。</p>
+                            <p>設定正確的話，會出現以下的記錄。如果顯示錯誤的訊息，請再次查看以上的設定是否正確。</p>
+                            <pre>Hi yourname! You've successfully authenticated, but Backlog does not provide shell access.
+Connection to git.backlog.jp closed.</pre>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <section id="sec2" class="Item">
+                        <h1>無法透過HTTPS URL 複製遠端數據庫</h1>
+                        <div class="Entry-content">
+                            <p>如果您使用舊版本的Git，push 或 pull 有時可能不能正常運作。請使用1.7.10以後的版本。<br />使用 SourceTree 或 TortoiseGit 的用戶，請確認一下正在使用的版本。</p>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <section id="sec3" class="Item">
+                        <h1>HTTPS執行push/pull時每次都需要密碼</h1>
+                        <div class="Entry-content">
+                            <p class="Mg-b15">使用1.7.10以後版本的Git用戶，可以使用以下的方式，以避免每次都需要輸入密碼。</p>
+                            <h2>Windows</h2>
+                            <p class="Mg-b30">可以使用 <a href="https://github.com/anurse/git-credential-winstore" target="_blank">git-credential-winstore</a> ，您只需在第一次執行push/pull時輸入密碼。</p>
+                            <h2>Mac</h2>
+                            <p class="Mg-b30">在入門篇和進階篇都使用 Mac 的Git用戶，請注意，SourceTree具備了與Mac 鑰匙圈連接的功能。只要使用了這個功能，在 Pull 或 Push 時就不需要輸入密碼。</p>
+                            <h2>主控台</h2>
+                            <p>Mac用戶 ，您可以使用 Git credentials API 設定連接的用戶名/密碼。使用 Homebrew 的用戶在安裝Git時就會自動安裝Git credentials API。如果當時沒有安裝，則需要另外手動安裝。</p>
+                            <p>您可以使用以下的命令來確認是否有安裝Git credentials API：</p>
+                            <pre class="Mg-b15">$ git credential-osxkeychain
+Usage: git credential-osxkeychain &lt;get|store|erase&gt;</pre>
+                            <p>沒有安裝Git credentials API的話，會顯示以下的內容：</p>
+                            <pre class="Mg-b15">$ git credential-osxkeychain
+git: 'credential-osxkeychain' is not a git command. See 'git --help'.</pre>
+                            <p>這種情形下，請立即下載並將檔案移至/usr/local/bin</p>
+                            <pre class="Mg-b15">curl -s -O http://github-media-downloads.s3.amazonaws.com/osx/git-credential-osxkeychain
+chmod u+x git-credential-osxkeychain
+mv git-credential-osxkeychain /usr/local/bin</pre>
+                            <p>完成安裝後，請執行以下命令來啟動Git credentials API</p>
+                            <pre>git config --global credential.helper osxkeychain</pre>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <section id="sec4" class="Item">
+                        <h1>Push後，無法將變更上傳到遠端數據庫</h1>
+                        <div class="Entry-content">
+                            <p>這通常發生當您從新建的本地端數據庫進行push,接著會顯示以下的訊息：</p>
+                            <pre class="Mg-b15">$ git push
+No refs in common and none specified; doing nothing.
+Perhaps you should specify a branch such as 'master'.
+Everything up-to-date</pre>
+                            <p>在 push 時省略分支名稱的話，Git在預設的情形下會認為您要push當前的變更到與本地端分支同樣名稱的遠端分支，這是因為在遠端數據庫上還未建立分支。因此如果要 push 到遠端數據庫裡不存在的分支，需要給予明確的數據庫與分支名稱。</p>
+                            <pre class="Mg-b15">$ git push -u origin master</pre>
+                            <p>一旦執行 push 後會自動建立 master 分支，接下來的 push 就可以省略數據庫和分支的名稱。</p>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <footer class="Paging">
+                        <div class="Nav-prev">
+                            <a href="index.html"><span class="Bg"></span><span><b>返回頂部</b></span></a>
+                        </div>
+                    </footer>
+                </article>
+                <!-- #main -->
+            </div>
+
+            <div id="sub" role="complementary">
+                <aside id="refSideMenu" class="Side-menu">
+                    <ul>
+                        <li><a href="basic.html">基本操作</a></li>
+                        <li><a href="branch.html">操作分支</a></li>
+                        <li><a href="tag.html">操作標籤</a></li>
+                        <li><a href="ssh.html">設定SSH連接  </a></li>
+                        <li><a href="log.html">操作提交記錄</a></li>
+                        <li><a href="remote.html">遠端操作</a></li>
+                        <li><a href="config.html">Git設定</a></li>
+                        <li><a href="stash.html">Stash（暫存）</a></li>
+                        <li><a href="git-svn.html">Git 和 Subversion的相比</a></li>
+                        <li><a href="trouble-shooting.html">疑難排解</a></li>
+                    </ul>
+                </aside>
+                <!-- #sub -->
+            </div>
+
+            <!-- #content -->
+        </div>
+
+        
+        <footer id="footer" role="contentinfo">
+            <div class="Row">
+                <div class="Col Right">
+                    <div class="Languages">
+                        <div class="Languages-inner Clearfix">
+                            <span class="Pick-language">繁體中文</span>
+                            <span class="Pick-down"></span>
+                            <select id="languageMenu" name="languageMenu" class="Language-menu" onchange="selectLanguage(this)">
+                                <option value="http://backlogtool.com/git-tutorial/en/">English</option>
+                                <option value="http://www.backlog.jp/git-guide/">日本語</option>
+                                <option value="http://backlogtool.com/git-tutorial/cn/">简体中文</option>
+                                <option selected value="../index.html">繁體中文</option>
+                                <option value="http://backlogtool.com/git-tutorial/kr/">한국어</option>
+                                <option value="http://backlogtool.com/git-tutorial/vn/">Tiếng Việt</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- .Languages-area -->
+                    <ul class="Social-icon">
+                        <li><a href="https://www.facebook.com/BacklogTW" target="_blank">
+                        <img src="../img/common/icon/ico_facebook.png" srcset="../img/common/icon/ico_facebook.png 1x, ../img/common/icon/ico_facebook@2x.png 2x" width="36" height="36" alt="Facebook"></a></li><li><a href="https://twitter.com/BacklogTaiwan" target="_blank"><img src="../img/common/icon/ico_twitter.png"
+                    srcset="../img/common/icon/ico_twitter.png 1x, ../img/common/icon/ico_twitter@2x.png 2x" width="36" height="36" alt="twitter"></a></li>
+                    </ul>
+                </div>
+                <div class="Col Left">
+                    <div class="Powered">Powered by<br>
+                        <a href="http://backlogtool.com/tw/" target="_blank" title="貝格樂">
+                        <img src="../img/common/logo_backlog.png" srcset="../img/common/logo_backlog.png 1x, ../img/common/logo_backlog@2x.png 2x" width="142" height="42" alt="貝格樂 - 所有團隊成員的專案管理工具"></a>
+                    </div>
+                    <p class="Nulab">Copyright &copy; 2004-2017 Nulab Inc. All rights reserved. </p>
+                </div>
+            </div>
+            <!-- #footer -->
+        </footer>
+
+        <div class="Top-link"><a id="topLink" href="#">UP</a></div>
+        <div id="showUserVoicePopupTab" data-uv-trigger="smartvote">
+            <a href="http://feedback.backlogtool.com/forums/277856" title="">Git入門的反饋</a>
+        </div>
+
+        <!-- #container -->
+    </div>
+    
+    <script src="../../../../ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/lib/jquery.js"><\/script>')</script>
+    <script type="text/javascript" src="../js/jquery.config.js"></script>
+    <script type="text/javascript">
+        function selectLanguage(lang) {
+            window.location.href = lang.options[lang.selectedIndex].value;
+        }
+    </script>
+    <script>(function(){
+            var uv=document.createElement('script');
+            uv.type='text/javascript';
+            uv.async=true;
+            uv.src='../../../../widget.uservoice.com/Yox3591xmDUTIQiafbmDQA.js';
+            var s=document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(uv,s);
+            uv.onload = uv.onreadystatechange = function(){
+                var state = uv.readyState;
+                if(!state || /complete|loaded/.test(state)){
+                    UserVoice.push(['set', {
+                        forum_id: '277856'
+                    }]);
+                    uv.onload = uv.onreadystatechange = null;
+                }
+            }
+        })();</script>
+    <script type="text/javascript">
+        var tweetBtn, googleBtn, likeBtn;
+        tweetBtn =
+            '<li class="Twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://backlogtool.com/git-guide/tw/" data-text="連猴子都能懂的Git入門指南 | 貝格樂（Backlog）" data-via="BacklogTaiwan" data-lang="zh-tw">推文</a>'
+            + '<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?"http":"https";if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document, "script", "twitter-wjs");<\/script></li>';
+        likeBtn =
+            '<li class="Facebook"><div id="fb-root"></div>'
+            +'<script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.async = true; js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&appId=417292271624387&version=v2.0"; fjs.parentNode.insertBefore(js, fjs); }(document, "script", "facebook-jssdk"));<\/script>'
+            +'<div class="fb-like" data-href="http://backlogtool.com/git-guide/tw/" data-send="false" data-layout="button_count" data-width="110" data-show-faces="false"></div></li>';
+        googleBtn =
+            '<li class="Google"><g:plusone size="medium" href="http://backlogtool.com/git-guide/tw/"></g:plusone>'
+            +'<script type="text/javascript"> window.___gcfg = {lang: "zh-TW"}; (function() { var po = document.createElement("script"); po.type = "text/javascript"; po.async = true; po.src = "https://apis.google.com/js/plusone.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(po, s); })(); <\/script></li>';
+
+        setTimeout(function() {
+            $('#socials').append(tweetBtn + likeBtn + googleBtn);
+        },1000);
+    </script>
+    <script type="text/javascript" src="../js/reference.js"></script>
+</body>
+
+<!-- Mirrored from backlogtool.com/git-tutorial/tw/reference/trouble-shooting.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 01 Sep 2017 09:07:40 GMT -->
+</html>

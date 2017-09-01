@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<!--[if IE 7]> <html class="Ie7 Ie" dir="ltr" lang="zh-TW"> <![endif]-->
+<!--[if IE 8]> <html class="Ie8 Ie" dir="ltr" lang="zh-TW"> <![endif]-->
+<!--[if IE 9]> <html class="Ie9 Ie" dir="ltr" lang="zh-TW"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html dir="ltr" lang="zh-TW" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml"> <!--<![endif]-->
+
+<!-- Mirrored from backlogtool.com/git-tutorial/tw/reference/remote.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 01 Sep 2017 09:07:40 GMT -->
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="Git, 版本控制，甘特圖，燃盡圖，專案管理，subversion,貝格樂">
+	<meta name="description" content="遠端操作 | 歡迎來到超級簡單的Git入門指南，讓我們一起學習如何使用Git版本控制系統吧！">
+    <title>遠端操作 | 連猴子都能懂的Git入門指南  | 貝格樂（Backlog）</title>
+    <meta property="og:title" content="遠端操作 | 連猴子都能懂的Git入門指南  | 貝格樂（Backlog）">
+    <meta property="og:description" content="遠端操作 | 歡迎來到超級簡單的Git入門指南，讓我們一起學習如何使用Git版本控制系統吧！">
+    <meta property="og:url" content="http://backlogtool.com/git-guide/tw/reference/remote.html">
+    <meta property="og:image" content="../ogp_dft.png">
+    <meta property="og:type" content="article">
+    <meta property="fb:app_id" content="417292271624387">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" media="all" href="../style.css">
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'../../../../www.googletagmanager.com/gtm5445.html?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TSQPXBL');</script>
+<!-- End Google Tag Manager -->    <!--[if lt IE 9]>
+        <script src="./../js/lib/html5.js" type="text/javascript"></script>
+    <![endif]-->
+</head>
+<body class="Ref">
+    
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TSQPXBL"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->    <div id="container">
+        
+        <header id="header" role="banner">
+            <div class="Inner">
+                <h1><a href="../index.html">連猴子都能懂的Git入門指南</a></h1>
+                <a class="btn-contents" href="../contents/index.html"><span>目錄</span><span class="Bg"></span></a>
+                <ul id="socials" class="Socials Cf">
+                    <!-- #socials -->
+                </ul>
+
+                <nav id="nav">
+                    <ul class="Cf">
+                        <li><a href="../intro/intro1_1.html">入門篇</a></li>
+                        <li><a href="../stepup/stepup1_1.html">進階篇</a></li>
+                        <li><a href="index.html">Git命令快速參考</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- #header -->
+        </header>
+
+        <div id="content">
+            <div id="main" role="main">
+                <ol class="Breadcrumbs">
+                    <li><a href="index.html">Git命令快速參考 TOP</a> &gt; </li>
+                    <li>遠端操作</li>
+                </ol>
+                <article class="Ref-post Remote">
+                    <h1>遠端操作</h1>
+                    <ul class="Page-nav">
+                        <li><a href="#sec1">複製既有的遠端數據庫</a></li>
+                        <li><a href="#sec2">添加一個遠端數據庫</a></li>
+                        <li><a href="#sec3">顯示遠端數據庫清單</a></li>
+                        <li><a href="#sec4">取遠端數據庫的分支建立本地端數據庫的分支</a></li>
+                        <li><a href="#sec5">在遠端數據庫建立分支/push修改內容到分支</a></li>
+                        <li><a href="#sec6">查看遠端數據庫分支的修改內容</a></li>
+                        <li><a href="#sec7">合併遠端數據庫的分支的修改內容</a></li>
+                        <li><a href="#sec8">刪除遠端數據庫的分支</a></li>
+                        <li><a href="#sec9">在遠端數據庫建立標籤</a></li>
+                        <li><a href="#sec10">刪除在遠端數據庫的標籤</a></li>
+                        <li><a href="#sec11">修改已註冊的遠端數據庫的位址</a></li>
+                        <li><a href="#sec12">修改已註冊的遠端數據庫名稱</a></li>
+                    </ul>
+                    <section id="sec1" class="Item">
+                        <h1>複製既有的遠端數據庫</h1>
+                        <div class="Entry-content">
+                            <pre class="Mg-b15">$ git clone &lt;url&gt;</pre>
+                            <p>執行 clone 命令時，會自動設定遠端數據庫為追踪目標。這樣在 push 或 fetch/pull 命令時即使省略 repository，也可以正確的顯示/讀取修改內容。</p>
+                            <p><a href="../intro/intro3_2.html">入門篇 【共享數據庫】 複製遠端數據庫</a><br>
+                                <a href="../intro/intro4_3.html">入門篇 【教學2 共享數據庫】 複製遠端數據庫</a></p>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <section id="sec2" class="Item">
+                        <h1>添加一個遠端數據庫</h1>
+                        <div class="Entry-content">
+                            <pre>$ git remote add &lt;name&gt; &lt;url&gt;</pre>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <section id="sec3" class="Item">
+                        <h1>顯示遠端數據庫清單</h1>
+                        <div class="Entry-content">
+                            <pre class="Mg-b15">$ git remote</pre>
+                            <p>加上 -v 後即可顯示遠端數據庫的詳細情況。</p>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <section id="sec4" class="Item">
+                        <h1>取遠端數據庫的分支建立本地端數據庫的分支</h1>
+                        <div class="Entry-content">
+                            <pre class="Mg-b15">$ git checkout &lt;branch&gt;</pre>
+                            <p>在最新的Git版本中，chekout 命令的參數下指定遠端數據庫的分支，就可以從遠端數據庫複製分支到本地端數據庫建立分支。<br />如果因為版本太舊不能建立，請按照下面的方法在 branch 命令下建立分支。</p>
+                            <pre>$ git branch &lt;branchname&gt; origin/&lt;branch&gt;</pre>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <section id="sec5" class="Item">
+                        <h1>在遠端數據庫建立分支/push修改內容到分支</h1>
+                        <div class="Entry-content">
+                            <pre class="Mg-b15">$ git push &lt;repository&gt; &lt;refspec&gt;</pre>
+                            <p>加上 -u ，可以將遠端數據庫的分支設為追蹤目標。這樣，在 push 或 fetch/pull 命令時即使省略 repository，也可以正確的顯示/讀取修改內容。</p>
+                            <p>在 &lt;repository&gt;，除了 remote add 命令所添加的數據庫名稱以外，也可以直接指定 URL，省略 &lt;repository&gt; 也可以成為遠端數據庫指定的追踪對象。</p>
+                            <p>在 &lt;refspec&gt; 可以指定分支名稱。省略 refspec 的話，遠端數據庫和本地端數據庫所存有的分支在預設裡會被列為目標。</p>
+                            <p><a href="../intro/intro3_1.html">入門篇 【共享數據庫】 Push到遠端數據庫</a><br>
+                                <a href="../intro/intro4_2.html">入門篇 【教學2 共享數據庫】 Push到遠端數據庫</a></p>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <section id="sec6" class="Item">
+                        <h1>查看遠端數據庫分支的修改內容</h1>
+                        <div class="Entry-content">
+                            <pre class="Mg-b15">$ git fetch &lt;repository&gt; &lt;refspec&gt;</pre>
+                            <p>要確認遠端數據庫的修改內容，但不想合併內容到本地端數據庫時，可以使用 fetch 命令。fetch 命令不會修改本地端數據庫的分支。</p>
+                            <p>可以省略 repository 或 refspec。省略 repository 時的動作與 push 的時候是相同的。省略 refspec，所有的分支在默認裡會被列為目標。</p>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <section id="sec7" class="Item">
+                        <h1>合併遠端數據庫的分支的修改內容</h1>
+                        <div class="Entry-content">
+                            <pre class="Mg-b15">$ git pull &lt;repository&gt; &lt;refspec&gt;</pre>
+                            <p>藉著 pull 命令，可以把遠端數據庫修改的內容合併到本地端數據庫。您只要知道「pull = fetch + merge」就可以了。</p>
+                            <p>可以省略 repository 或 refspec 。省略 repository 名稱時的動作與 push 的時候是相同的。若省略 refspec，會只pull現有的分支。</p>
+                            <p><a href="../intro/intro3_3.html">入門篇 【共享數據庫】 從遠端數據庫執行pull</a><br>
+                                <a href="../intro/intro4_5.html">入門篇 【教學2 共享數據庫】 從遠端數據庫執行pull</a></p>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <section id="sec8" class="Item">
+                        <h1>刪除遠端數據庫的分支</h1>
+                        <div class="Entry-content">
+                            <pre class="Mg-b15">$ git push --delete &lt;repository&gt; &lt;branchname&gt;</pre>
+                            <p>在 push 命令加上 --delete 和 &lt;repository&gt; &lt;branchname&gt; ，然後執行。</p>
+                            <p>Git 1.7之前的版本不能使用 --delete ，所以請用以下的指令：</p>
+                            <pre class="Mg-b15">$ git push &lt;repository&gt; :&lt;branchname&gt;</pre>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <section id="sec9" class="Item">
+                        <h1>在遠端數據庫建立標籤</h1>
+                        <div class="Entry-content">
+                            <pre class="Mg-b15">$ git push --tags</pre>
+                            <p>加上 --tags ，就可以將在本地端數據庫裡所有的標籤添加到遠端數據庫。</p>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <section id="sec10" class="Item">
+                        <h1>刪除在遠端數據庫的標籤</h1>
+                        <div class="Entry-content">
+                            <pre class="Mg-b15">$ git push --delete &lt;repository&gt; &lt;tagname&gt;</pre>
+                            <p>在 push 命令加上 --delete 和 &lt;repository&gt; &lt;tagname&gt;，然後執行。</p>
+                            <p>Git 1.7之前的版本不能使用 --delete ，所以請用以下的指令</p>
+                            <pre class="Mg-b15">$ git push &lt;repository&gt; :&lt;tagname&gt;</pre>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <section id="sec11" class="Item">
+                        <h1>修改已註冊的遠端數據庫的位址</h1>
+                        <div class="Entry-content">
+                            <pre class="Mg-b15">$ git remote set-url &lt;name&gt; &lt;newurl&gt;</pre>
+                            <p>在 &lt;newurl&gt; 內指定遠端數據庫的新地址。</p>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <section id="sec12" class="Item">
+                        <h1>修改已註冊的遠端數據庫名稱</h1>
+                        <div class="Entry-content">
+                            <pre class="Mg-b15">$ git remote rename &lt;old&gt; &lt;new&gt;</pre>
+                            <p> 將遠端數據庫的名稱從 &lt;old&gt; 改為 &lt;new&gt; 。</p>
+                        </div>
+                        <a class="Up-btn" href="#">Back To Top</a>
+                    </section>
+
+                    <footer class="Paging">
+                        <div class="Nav-prev">
+                            <a href="index.html"><span class="Bg"></span><span><b>返回頂部</b></span></a>
+                        </div>
+                    </footer>
+                </article>
+                <!-- #main -->
+            </div>
+
+            <div id="sub" role="complementary">
+                <aside id="refSideMenu" class="Side-menu">
+                    <ul>
+                        <li><a href="basic.html">基本操作</a></li>
+                        <li><a href="branch.html">操作分支</a></li>
+                        <li><a href="tag.html">操作標籤</a></li>
+                        <li><a href="ssh.html">設定SSH連接  </a></li>
+                        <li><a href="log.html">操作提交記錄</a></li>
+                        <li><a href="remote.html">遠端操作</a></li>
+                        <li><a href="config.html">Git設定</a></li>
+                        <li><a href="stash.html">Stash（暫存）</a></li>
+                        <li><a href="git-svn.html">Git 和 Subversion的相比</a></li>
+                        <li><a href="trouble-shooting.html">疑難排解</a></li>
+                    </ul>
+                </aside>
+                <!-- #sub -->
+            </div>
+
+            <!-- #content -->
+        </div>
+
+        
+        <footer id="footer" role="contentinfo">
+            <div class="Row">
+                <div class="Col Right">
+                    <div class="Languages">
+                        <div class="Languages-inner Clearfix">
+                            <span class="Pick-language">繁體中文</span>
+                            <span class="Pick-down"></span>
+                            <select id="languageMenu" name="languageMenu" class="Language-menu" onchange="selectLanguage(this)">
+                                <option value="http://backlogtool.com/git-tutorial/en/">English</option>
+                                <option value="http://www.backlog.jp/git-guide/">日本語</option>
+                                <option value="http://backlogtool.com/git-tutorial/cn/">简体中文</option>
+                                <option selected value="../index.html">繁體中文</option>
+                                <option value="http://backlogtool.com/git-tutorial/kr/">한국어</option>
+                                <option value="http://backlogtool.com/git-tutorial/vn/">Tiếng Việt</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- .Languages-area -->
+                    <ul class="Social-icon">
+                        <li><a href="https://www.facebook.com/BacklogTW" target="_blank">
+                        <img src="../img/common/icon/ico_facebook.png" srcset="../img/common/icon/ico_facebook.png 1x, ../img/common/icon/ico_facebook@2x.png 2x" width="36" height="36" alt="Facebook"></a></li><li><a href="https://twitter.com/BacklogTaiwan" target="_blank"><img src="../img/common/icon/ico_twitter.png"
+                    srcset="../img/common/icon/ico_twitter.png 1x, ../img/common/icon/ico_twitter@2x.png 2x" width="36" height="36" alt="twitter"></a></li>
+                    </ul>
+                </div>
+                <div class="Col Left">
+                    <div class="Powered">Powered by<br>
+                        <a href="http://backlogtool.com/tw/" target="_blank" title="貝格樂">
+                        <img src="../img/common/logo_backlog.png" srcset="../img/common/logo_backlog.png 1x, ../img/common/logo_backlog@2x.png 2x" width="142" height="42" alt="貝格樂 - 所有團隊成員的專案管理工具"></a>
+                    </div>
+                    <p class="Nulab">Copyright &copy; 2004-2017 Nulab Inc. All rights reserved. </p>
+                </div>
+            </div>
+            <!-- #footer -->
+        </footer>
+
+        <div class="Top-link"><a id="topLink" href="#">UP</a></div>
+        <div id="showUserVoicePopupTab" data-uv-trigger="smartvote">
+            <a href="http://feedback.backlogtool.com/forums/277856" title="">Git入門的反饋</a>
+        </div>
+
+        <!-- #container -->
+    </div>
+    
+    <script src="../../../../ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/lib/jquery.js"><\/script>')</script>
+    <script type="text/javascript" src="../js/jquery.config.js"></script>
+    <script type="text/javascript">
+        function selectLanguage(lang) {
+            window.location.href = lang.options[lang.selectedIndex].value;
+        }
+    </script>
+    <script>(function(){
+            var uv=document.createElement('script');
+            uv.type='text/javascript';
+            uv.async=true;
+            uv.src='../../../../widget.uservoice.com/Yox3591xmDUTIQiafbmDQA.js';
+            var s=document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(uv,s);
+            uv.onload = uv.onreadystatechange = function(){
+                var state = uv.readyState;
+                if(!state || /complete|loaded/.test(state)){
+                    UserVoice.push(['set', {
+                        forum_id: '277856'
+                    }]);
+                    uv.onload = uv.onreadystatechange = null;
+                }
+            }
+        })();</script>
+    <script type="text/javascript">
+        var tweetBtn, googleBtn, likeBtn;
+        tweetBtn =
+            '<li class="Twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://backlogtool.com/git-guide/tw/" data-text="連猴子都能懂的Git入門指南 | 貝格樂（Backlog）" data-via="BacklogTaiwan" data-lang="zh-tw">推文</a>'
+            + '<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?"http":"https";if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document, "script", "twitter-wjs");<\/script></li>';
+        likeBtn =
+            '<li class="Facebook"><div id="fb-root"></div>'
+            +'<script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.async = true; js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&appId=417292271624387&version=v2.0"; fjs.parentNode.insertBefore(js, fjs); }(document, "script", "facebook-jssdk"));<\/script>'
+            +'<div class="fb-like" data-href="http://backlogtool.com/git-guide/tw/" data-send="false" data-layout="button_count" data-width="110" data-show-faces="false"></div></li>';
+        googleBtn =
+            '<li class="Google"><g:plusone size="medium" href="http://backlogtool.com/git-guide/tw/"></g:plusone>'
+            +'<script type="text/javascript"> window.___gcfg = {lang: "zh-TW"}; (function() { var po = document.createElement("script"); po.type = "text/javascript"; po.async = true; po.src = "https://apis.google.com/js/plusone.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(po, s); })(); <\/script></li>';
+
+        setTimeout(function() {
+            $('#socials').append(tweetBtn + likeBtn + googleBtn);
+        },1000);
+    </script>
+    <script type="text/javascript" src="../js/reference.js"></script>
+</body>
+
+<!-- Mirrored from backlogtool.com/git-tutorial/tw/reference/remote.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 01 Sep 2017 09:07:40 GMT -->
+</html>

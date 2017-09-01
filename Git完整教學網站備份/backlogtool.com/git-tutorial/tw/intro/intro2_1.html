@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<!--[if IE 7]> <html class="Ie7 Ie" dir="ltr" lang="zh-TW"> <![endif]-->
+<!--[if IE 8]> <html class="Ie8 Ie" dir="ltr" lang="zh-TW"> <![endif]-->
+<!--[if IE 9]> <html class="Ie9 Ie" dir="ltr" lang="zh-TW"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html dir="ltr" lang="zh-TW" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml"> <!--<![endif]-->
+
+<!-- Mirrored from backlogtool.com/git-tutorial/tw/intro/intro2_1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 01 Sep 2017 09:06:50 GMT -->
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="Git, 版本控制，甘特圖，燃盡圖，專案管理，subversion,貝格樂">
+	<meta name="description" content="安裝Git【教學1 開始使用Git】  | 歡迎來到超級簡單的Git入門指南，讓我們一起學習如何使用Git版本控制系統吧！">
+    <title>安裝Git【教學1 開始使用Git】  | 連猴子都能懂的Git入門指南  | 貝格樂（Backlog）</title>
+    <meta property="og:title" content="安裝Git【教學1 開始使用Git】  | 連猴子都能懂的Git入門指南  | 貝格樂（Backlog）">
+    <meta property="og:description" content="安裝Git【教學1 開始使用Git】  | 歡迎來到超級簡單的Git入門指南，讓我們一起學習如何使用Git版本控制系統吧！">
+    <meta property="og:url" content="http://backlogtool.com/git-guide/tw/intro/intro2_1.html">
+    <meta property="og:image" content="../ogp_dft.png">
+    <meta property="og:type" content="article">
+    <meta property="fb:app_id" content="417292271624387">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" media="all" href="../style.css">
+    <link rel="stylesheet" type="text/css" media="all" href="../css/select2/select2.css">
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'../../../../www.googletagmanager.com/gtm5445.html?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TSQPXBL');</script>
+<!-- End Google Tag Manager -->    <!--[if lt IE 9]>
+        <script src="./../js/lib/html5.js" type="text/javascript"></script>
+    <![endif]-->
+</head>
+<body>
+    
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TSQPXBL"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->    <div id="container">
+        
+        <header id="header" role="banner">
+            <div class="Inner">
+                <h1><a href="../index.html">連猴子都能懂的Git入門指南</a></h1>
+                <a class="btn-contents" href="../contents/index.html"><span>目錄</span><span class="Bg"></span></a>
+                <ul id="socials" class="Socials Cf">
+                    <!-- #socials -->
+                </ul>
+
+                <nav id="nav">
+                    <ul class="Cf">
+                        <li><a href="intro1_1.html">入門篇</a></li>
+                        <li><a href="../stepup/stepup1_1.html">進階篇</a></li>
+                        <li><a href="../reference/index.html">Git命令快速參考</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- #header -->
+        </header>
+
+        <div id="content">
+            <div id="main" role="main">
+                <article class="Post">
+                    <header class="Entry-header">
+                        <p class="Category-ttl">教學1 開始使用Git</p>
+                        <h1 class="Entry-ttl">安裝Git</h1>
+                        <p class="Description">在進入正式教學之前，我們需要先建構使用Git的環境。您可以選擇Windows(GUI)、Mac(GUI)、或命令行(主控台)作為安裝Git的環境。下面將根據各個環境進行講解。</p>
+                        <div class="Important">
+                            <p>如果您是開發者或是習慣使用主控台(命令列)，您可以試著用命令列來操作Git。</p>
+                        </div>
+
+                        <!-- .Entry-header -->
+                    </header>
+
+                    <div class="Change-content-area Cf">
+                        <form action="#">
+                            <label for="changeSystem">請選擇使用電腦的系統</label>
+                            <select id="changeSystem" name="changeSystem" class="Change-system">
+                                <option value="mac">選擇Mac</option>
+                                <option value="windows">選擇Windows</option>
+                                <option value="console">選擇主控台</option>
+                            </select>
+                        </form>
+                    </div>
+
+                    <div id="windows" class="Entry-content" style="display:none;">
+                        <h2>Windows</h2>
+                        <p>在這裡要介紹開放原始碼的Git程式，TortoiseGit。也會介紹如何把選單中文化的語言包。<br><a href="http://code.google.com/p/tortoisegit/" target="_blank">http://code.google.com/p/tortoisegit/</a></p><div class="Note Mg-b60">
+                            <p class="subhead">Tips</p>
+                            <p>要使用TortoiseGit，首先要安裝msysgit。請從以下的網站下載安裝程式並執行安裝。<br><a href="http://msysgit.github.io/" target="_blank">http://msysgit.github.io/</a></p>
+                        </div>
+                        <p>接著下載TortoiseGit的安裝程式和語言包（ Language Packs）。有32bit和64bit的版本可供下載，請選擇與您的windows系統相同的版本下載。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro2_1_1_win.png" alt="下載TortoiseGit"></p>
+                        <p>點兩下下載的安裝程式。顯示以下畫面後，點一下Next。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro2_1_4_win.png" alt="TortoiseGit"></p>
+                        <p>點擊Next按鈕。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro2_1_5_win.png" alt="點一下Next"></p>
+                        <p>選擇TortoiseGitPLink，點一下Next。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro2_1_6_win.png" alt="選擇TortoiseGitPLink，點一下Next。"></p>
+                        <p>繼續點一下Next。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro2_1_7_win.png" alt="繼續點一下Next"></p>
+                        <p>點一下Install。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro2_1_8_win.png" alt="點一下Install"></p>
+                        <p>開始安裝。如果出現用戶認證，請認證後再繼續安裝。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro2_1_9_win.png" alt="開始安裝"></p>
+                        <p>安裝完畢。點一下Finish結束。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro2_1_10_win.png" alt="安裝完畢"></p>
+                        <p>接下來進行中文化。從語言包下載Chinese（traditional），點兩下以啟動，接著點擊Next按鈕。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro2_1_11_win.png" alt="從 Language Packs下載Chinese, traditional"></p>
+                        <p>開始安裝。如果出現用戶認證，請認證後再繼續安裝。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro2_1_12_win.png" alt="開始安裝"></p>
+                        <p>安裝完畢。點一下Finish結束。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro2_1_13_win.png" alt="安裝完畢"></p>
+                        <p>在桌面上任意一個地方按右鍵顯示選單，選單裡會有新增Git選項，請點一下 「TortoiseGit」 &gt; 「Settings」 </p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro2_1_14_win.png" alt="按右鍵顯示選單，選單裡會新增Git的選項。"></p>
+                        <p>會出現以下設定畫面，在「General」頁面的「Language」裡選擇中文然後點擊「OK」。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro2_1_15_win.png" alt="在General的畫面的Language裡選擇中文"></p>
+                        <p class="Mg-b60">這樣就完成了安裝和中文化設定。</p>
+                        <!-- .Entry-content -->
+                    </div>
+
+                    <div id="mac" class="Entry-content" style="display:none;">
+                        <h2>Mac</h2>
+                        <p>使用Mac的用戶可以選擇免費的GUI 工具--SourceTree. <br><a href="http://www.sourcetreeapp.com/" target="_blank">http://www.sourcetreeapp.com/</a></p><p>在已下載完成的dmg檔案點兩下，把SourceTree拖到Applications。</p>
+                        <p class="Mg-b60">這樣就完成安裝了。</p>
+                        <p class="Mg-b60 Text-center"><img src="../img/post/intro/capture_intro2_1_1_mac.png" alt="SourceTree GUI用戶"></p>
+                        <!-- .Entry-content -->
+                    </div>
+
+                    <div id="console" class="Entry-content" style="display:none;">
+                        <h2>主控台</h2>
+                        <p>要在主控台使用Git的話，請從Git的網站下載Git的安裝程式進行安裝。<br><a href="http://git-scm.com/" target="_blank">http://git-scm.com/</a></p><div class="Note Mg-b60">
+                            <p class="subhead">Note</p>
+                            <p>Mac的用戶，可以使用套件管理工具MacPorts或Homebrew進行安裝。</p>
+                        </div>
+                        <h2>Windows</h2>
+                        <p>安裝之後，從開始選單&gt; 所有程式&gt; Git&gt; Git Bash啟動程式。</p>
+
+                        <h2>Mac</h2>
+                        <p>安裝之後，啟動 應用程式/工具程式裡的終端機</p>
+                        <p>為了確認是否安裝成功，請執行version命令。如果有顯示Git的版本就表示安裝成功了。顯示的文字會因安裝的系統或版本有所差異。</p>
+                        <pre class="Mg-b30">$ <b>git --version</b>
+git version 1.7.7.5 (Apple Git-26)</pre>
+                        <p class="Mg-b60 Text-center"><img src="../img/post/intro/capture_intro2_1_1_cui.png" alt="講解在下一頁"></p>
+                        <!-- .Entry-content -->
+                    </div>
+
+                    
+                    <footer class="Paging Cf">
+                        <div class="Nav-prev">
+                            <a href="intro1_4.html">
+                                <span class="Bg"></span>
+                                <span><b>上一頁</b></span>
+
+                            </a>
+                        </div>
+                        <div class="Nav-next">
+                            <a href="intro2_2.html">
+                                <span class="Bg"></span>
+                                <span><b>下一頁</b></span>
+                            </a>
+                        </div>
+                        <!-- .Paging -->
+                    </footer>
+
+                </article>
+                <!-- #main -->
+            </div>
+            <div id="sub" role="complementary">
+                <aside id="introSideMenu" class="Side-menu s_sideMenu">
+                    <section>
+                        <h1>Git的基本介紹</h1>
+                        <ul>
+                            <li><a href="intro1_1.html">Git版本控制</a></li>
+                            <li><a href="intro1_2.html">使用數據庫管理歷史記錄</a></li>
+                            <li><a href="intro1_3.html">記錄修改的提交</a></li>
+                            <li><a href="intro1_4.html">工作目錄與索引</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>教學1 開始使用Git</h1>
+                        <ul>
+                            <li><a href="intro2_1.html">安裝Git</a></li>
+                            <li><a href="intro2_2.html">初始設定</a></li>
+                            <li><a href="intro2_3.html">新建數據庫</a></li>
+                            <li><a href="intro2_4.html">提交檔案</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>共享數據庫</h1>
+                        <ul>
+                            <li><a href="intro3_1.html">Push到遠端數據庫</a></li>
+                            <li><a href="intro3_2.html">複製遠端數據庫</a></li>
+                            <li><a href="intro3_3.html">從遠端數據庫執行Pull</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>教學2 共享數據庫</h1>
+                        <ul>
+                            <li><a href="intro4_1.html">在貝格樂上建立遠端數據庫</a></li>
+                            <li><a href="intro4_2.html">Push到遠端數據庫</a></li>
+                            <li><a href="intro4_3.html">複製遠端數據庫</a></li>
+                            <li><a href="intro4_4.html">在複製的本地端數據庫執行push</a></li>
+                            <li><a href="intro4_5.html">從遠端數據庫執行Pull</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>合併修改記錄</h1>
+                        <ul>
+                            <li><a href="intro5_1.html">合併修改記錄</a></li>
+                            <li><a href="intro5_2.html">解決衝突</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>教學3 合併修改記錄</h1>
+                        <ul>
+                            <li><a href="intro6_1.html">製造衝突</a></li>
+                            <li><a href="intro6_2.html">解決衝突</a></li>
+                        </ul>
+                    </section>
+                </aside>
+                <!-- #sub -->
+            </div>
+            <!-- #content -->
+        </div>
+
+        
+        <footer id="footer" role="contentinfo">
+            <div class="Row">
+                <div class="Col Right">
+                    <div class="Languages">
+                        <div class="Languages-inner Clearfix">
+                            <span class="Pick-language">繁體中文</span>
+                            <span class="Pick-down"></span>
+                            <select id="languageMenu" name="languageMenu" class="Language-menu" onchange="selectLanguage(this)">
+                                <option value="http://backlogtool.com/git-tutorial/en/">English</option>
+                                <option value="http://www.backlog.jp/git-guide/">日本語</option>
+                                <option value="http://backlogtool.com/git-tutorial/cn/">简体中文</option>
+                                <option selected value="../index.html">繁體中文</option>
+                                <option value="http://backlogtool.com/git-tutorial/kr/">한국어</option>
+                                <option value="http://backlogtool.com/git-tutorial/vn/">Tiếng Việt</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- .Languages-area -->
+                    <ul class="Social-icon">
+                        <li><a href="https://www.facebook.com/BacklogTW" target="_blank">
+                        <img src="../img/common/icon/ico_facebook.png" srcset="../img/common/icon/ico_facebook.png 1x, ../img/common/icon/ico_facebook@2x.png 2x" width="36" height="36" alt="Facebook"></a></li><li><a href="https://twitter.com/BacklogTaiwan" target="_blank"><img src="../img/common/icon/ico_twitter.png"
+                    srcset="../img/common/icon/ico_twitter.png 1x, ../img/common/icon/ico_twitter@2x.png 2x" width="36" height="36" alt="twitter"></a></li>
+                    </ul>
+                </div>
+                <div class="Col Left">
+                    <div class="Powered">Powered by<br>
+                        <a href="http://backlogtool.com/tw/" target="_blank" title="貝格樂">
+                        <img src="../img/common/logo_backlog.png" srcset="../img/common/logo_backlog.png 1x, ../img/common/logo_backlog@2x.png 2x" width="142" height="42" alt="貝格樂 - 所有團隊成員的專案管理工具"></a>
+                    </div>
+                    <p class="Nulab">Copyright &copy; 2004-2017 Nulab Inc. All rights reserved. </p>
+                </div>
+            </div>
+            <!-- #footer -->
+        </footer>
+
+        <div class="Top-link"><a id="topLink" href="#">UP</a></div>
+        <div id="showUserVoicePopupTab" data-uv-trigger="smartvote">
+            <a href="http://feedback.backlogtool.com/forums/277856" title="">Git入門的反饋</a>
+        </div>
+
+        <!-- #container -->
+    </div>
+    
+    <script src="../../../../ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/lib/jquery.js"><\/script>')</script>
+    <script type="text/javascript" src="../js/jquery.config.js"></script>
+    <script type="text/javascript">
+        function selectLanguage(lang) {
+            window.location.href = lang.options[lang.selectedIndex].value;
+        }
+    </script>
+    <script>(function(){
+            var uv=document.createElement('script');
+            uv.type='text/javascript';
+            uv.async=true;
+            uv.src='../../../../widget.uservoice.com/Yox3591xmDUTIQiafbmDQA.js';
+            var s=document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(uv,s);
+            uv.onload = uv.onreadystatechange = function(){
+                var state = uv.readyState;
+                if(!state || /complete|loaded/.test(state)){
+                    UserVoice.push(['set', {
+                        forum_id: '277856'
+                    }]);
+                    uv.onload = uv.onreadystatechange = null;
+                }
+            }
+        })();</script>
+    <script type="text/javascript">
+        var tweetBtn, googleBtn, likeBtn;
+        tweetBtn =
+            '<li class="Twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://backlogtool.com/git-guide/tw/" data-text="連猴子都能懂的Git入門指南 | 貝格樂（Backlog）" data-via="BacklogTaiwan" data-lang="zh-tw">推文</a>'
+            + '<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?"http":"https";if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document, "script", "twitter-wjs");<\/script></li>';
+        likeBtn =
+            '<li class="Facebook"><div id="fb-root"></div>'
+            +'<script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.async = true; js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&appId=417292271624387&version=v2.0"; fjs.parentNode.insertBefore(js, fjs); }(document, "script", "facebook-jssdk"));<\/script>'
+            +'<div class="fb-like" data-href="http://backlogtool.com/git-guide/tw/" data-send="false" data-layout="button_count" data-width="110" data-show-faces="false"></div></li>';
+        googleBtn =
+            '<li class="Google"><g:plusone size="medium" href="http://backlogtool.com/git-guide/tw/"></g:plusone>'
+            +'<script type="text/javascript"> window.___gcfg = {lang: "zh-TW"}; (function() { var po = document.createElement("script"); po.type = "text/javascript"; po.async = true; po.src = "https://apis.google.com/js/plusone.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(po, s); })(); <\/script></li>';
+
+        setTimeout(function() {
+            $('#socials').append(tweetBtn + likeBtn + googleBtn);
+        },1000);
+    </script>
+    <script type="text/javascript" src="../js/lib/select2.js"></script>
+    <script type="text/javascript">
+        // Selectbox カスタマイズ
+        $("#changeSystem").select2();
+    </script>
+    <script type="text/javascript" src="../js/lib/jquery.systemSelector.js"></script>
+    <script type="text/javascript">
+        // 環境切り替え
+        $("#changeSystem").installSelector();
+        $(document).ready( function(){
+            var systemType = $.systemSelector.init();
+            $("#changeSystem").select2("val",systemType);
+        } );
+    </script>
+</body>
+
+<!-- Mirrored from backlogtool.com/git-tutorial/tw/intro/intro2_1.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 01 Sep 2017 09:06:54 GMT -->
+</html>
+                        <p>接下來進行中文化。從語言包下載Chinese（traditional），點兩下以啟動，接著點擊Next按鈕。</p>

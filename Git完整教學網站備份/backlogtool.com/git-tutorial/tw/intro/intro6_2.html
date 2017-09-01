@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<!--[if IE 7]> <html class="Ie7 Ie" dir="ltr" lang="zh-TW"> <![endif]-->
+<!--[if IE 8]> <html class="Ie8 Ie" dir="ltr" lang="zh-TW"> <![endif]-->
+<!--[if IE 9]> <html class="Ie9 Ie" dir="ltr" lang="zh-TW"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html dir="ltr" lang="zh-TW" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml"> <!--<![endif]-->
+
+<!-- Mirrored from backlogtool.com/git-tutorial/tw/intro/intro6_2.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 01 Sep 2017 09:07:15 GMT -->
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="Git, 版本控制，甘特圖，燃盡圖，專案管理，subversion,貝格樂">
+	<meta name="description" content="解決衝突【修改歷史的合併】 | 歡迎來到超級簡單的Git入門指南，讓我們一起學習如何使用Git版本控制系統吧！">
+    <title>解決衝突【修改歷史的合併】 | 連猴子都能懂的Git入門指南  | 貝格樂（Backlog）</title>
+    <meta property="og:title" content="解決衝突【修改歷史的合併】 | 連猴子都能懂的Git入門指南  | 貝格樂（Backlog）">
+    <meta property="og:description" content="解決衝突【修改歷史的合併】 | 歡迎來到超級簡單的Git入門指南，讓我們一起學習如何使用Git版本控制系統吧！">
+    <meta property="og:url" content="http://backlogtool.com/git-guide/tw/intro/intro6_2.html">
+    <meta property="og:image" content="../ogp_dft.png">
+    <meta property="og:type" content="article">
+    <meta property="fb:app_id" content="417292271624387">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" media="all" href="../style.css">
+    <link rel="stylesheet" type="text/css" media="all" href="../css/select2/select2.css">
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'../../../../www.googletagmanager.com/gtm5445.html?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TSQPXBL');</script>
+<!-- End Google Tag Manager -->    <!--[if lt IE 9]>
+        <script src="./../js/lib/html5.js" type="text/javascript"></script>
+    <![endif]-->
+</head>
+<body>
+    
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TSQPXBL"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->    <div id="container">
+        
+        <header id="header" role="banner">
+            <div class="Inner">
+                <h1><a href="../index.html">連猴子都能懂的Git入門指南</a></h1>
+                <a class="btn-contents" href="../contents/index.html"><span>目錄</span><span class="Bg"></span></a>
+                <ul id="socials" class="Socials Cf">
+                    <!-- #socials -->
+                </ul>
+
+                <nav id="nav">
+                    <ul class="Cf">
+                        <li><a href="intro1_1.html">入門篇</a></li>
+                        <li><a href="../stepup/stepup1_1.html">進階篇</a></li>
+                        <li><a href="../reference/index.html">Git命令快速參考</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- #header -->
+        </header>
+
+        <div id="content">
+            <div id="main" role="main">
+                <article class="Post">
+                    <header class="Entry-header">
+                        <p class="Category-ttl">教學3 合併修改記錄</p>
+                        <h1 class="Entry-ttl">解決衝突</h1>
+                        <p class="Description">想要push修改內容到遠端數據庫，我們必須先手動解決衝突，請執行pull，從遠端數據庫取得最新的修改歷史。</p>
+
+                        <!-- .Entry-header -->
+                    </header>
+
+                    <div class="Change-content-area Cf">
+                        <form action="#">
+                            <label for="changeSystem">選擇您使用的電腦系統</label>
+                            <select id="changeSystem" name="changeSystem" class="Change-system">
+                                <option value="mac">選擇Mac</option>
+                                <option value="windows">選擇Windows</option>
+                                <option value="console">選擇主控台</option>
+                            </select>
+                        </form>
+                    </div>
+
+                    <div id="windows" class="Entry-content" style="display:none;">
+                        <h2>Windows</h2>
+                        <p><span class="Tutorial1">在tutorial的操作</span><br>執行pull：對tutorial目錄按右鍵，從選單中點「TortoiseGit」&gt; 「拉取」。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro6_2_1_win.png" alt="執行pull：對tutorial目錄按右鍵，從選單中點「TortoiseGit」&gt; 「拉取」。"></p>
+                        <p><span class="Tutorial1">在tutorial的操作</span><br>會顯示以下畫面，點一下「確認」。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro6_2_2_win.png" alt="點一下「確認」"></p>
+                        <p><span class="Tutorial1">在tutorial的操作</span><br>顯示自動合併失敗的訊息。點一下「關閉」結束畫面。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro6_2_3_win.png" alt="顯示自動合併失敗的訊息"></p>
+                        <p><span class="Tutorial1">在tutorial的操作</span><br>系統會詢問是否要檢視變更，請點擊「Yes」</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro6_2_4_win.png" alt="點一下「Yes」"></p>
+                        <p><span class="Tutorial1">在tutorial的操作</span><br>TortoiseGit會告知自動合併失敗是因為sample.txt發生了合併衝突，點一下「確認」以結束畫面。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro6_2_5_win.png" alt="發生衝突 "></p>
+                        <p><span class="Tutorial1">在tutorial的操作</span><br>打開sample.txt檔案確認內容，Git將用標示行顯示內容發生衝突的地方，如下圖：</p>
+                        <pre class="Mg-b30">連猴子都懂的Git命令
+add 修改加入索引
+<b>&LT;&LT;&LT;&LT;&LT;&LT;&LT; HEAD
+commit 記錄索引的狀態
+=======
+pull 取得遠端數據庫的內容
+&GT;&GT;&GT;&GT;&GT;&GT;&GT; 17c860612953c0f9d88f313c8dfbf7d858e02e91</b></pre>
+<p class="Align-right Mg-b0"><img class="Align-bottom" src="../img/post/img_modified_mascot.png" alt="請修改"></p>
+                        <p class="Mg-t40">將衝突的地方進行修改，導入兩方的修改，刪除多餘的標示行。請參考下圖：</p>
+                        <pre class="Mg-b30 Clear">連猴子都懂的Git命令
+add 修改加入索引
+<b>commit 記錄索引的狀態
+pull 取得遠端數據庫的內容</b></pre>
+                        <p><span class="Tutorial1">在tutorial的操作</span><br>我們解決了檔案內容的衝突，檔案內容已變更，所以需要進行提交，請點右鍵選單中的「Git提交」執行提交。</p>
+                        <p>這樣就完成了從遠端數據庫導入最新的修改內容了。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro6_2_6_win.png" alt="從遠端數據庫下載最新的修改內容"></p>
+                        <p>這表示兩個修改歷史已經成功合併且建立了新的合併提交。</p>
+                        <p>我們現在可以放心地push變更到遠端數據庫，不用擔心會產生任何衝突。</p>
+                        <div class="Important Mg-b60">
+                            <p>大家辛苦啦！關於Git基本使用方法的講解到此結束，想知道分支和提交的修改等更高難度的操作，請閱讀「進階篇」吧！</p>
+                        </div>
+                        <!-- .Entry-content -->
+                    </div>
+
+                    <div id="mac" class="Entry-content" style="display:none;">
+                        <h2>Mac</h2>
+                        <p><span class="Tutorial1">在tutorial的操作</span><br>點擊工具欄的「Pull」以執行pull。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro6_2_1_mac.png" alt="執行pull"></p>
+                        <p><span class="Tutorial1">在tutorial的操作</span><br>顯示以下畫面時，點擊OK按鈕。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro6_2_2_mac.png" alt="點一下「OK」"></p>
+                        <p><span class="Tutorial1">在tutorial的操作</span><br>合併時，會跳出顯示發生衝突的對話視窗</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro6_2_3_mac.png" alt="合併時發生衝突 "></p>
+                        <p><span class="Tutorial1">在tutorial的操作</span><br>打開sample.txt檔案確認內容，Git將用標示行顯示內容發生衝突的地方，如下圖：</p>
+                        <pre class="Mg-b30">連猴子都懂的Git命令
+add 修改加入索引
+<b>&LT;&LT;&LT;&LT;&LT;&LT;&LT; HEAD
+commit 記錄索引的狀態
+=======
+pull 取得遠端數據庫的內容
+&GT;&GT;&GT;&GT;&GT;&GT;&GT; 17c860612953c0f9d88f313c8dfbf7d858e02e91</b></pre>
+                        <p class="Align-right Mg-b0"><img class="Align-bottom" src="../img/post/img_modified_mascot.png" alt="請修改"></p>
+                        <p class="Mg-t40">將衝突的地方進行修改，導入兩方的修改，刪除多餘的標示行。請參考下圖：</p>
+                        <pre class="Mg-b30 Clear">連猴子都懂的Git命令
+add 修改加入索引
+<b>commit 記錄索引的狀態
+pull 取得遠端數據庫的內容</b></pre>
+                        <p><span class="Tutorial1">在tutorial的操作</span><br>解決檔案內容的衝突之後，我們需要進行提交。點擊工具欄的「Commit」執行提交。</p>
+                        <p>這樣就完成了從遠端數據庫導入最新的修改內容了。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro6_2_4_mac.png" alt="從遠端數據庫下載最新的修改內容"></p>
+                        <p>這表示兩個修改歷史已經成功合併且建立了新的合併提交。</p>
+                        <p>我們現在可以放心地push變更到遠端數據庫，不用擔心會產生任何衝突。</p>
+                        <div class="Important Mg-b60">
+                            <p>大家辛苦啦！關於Git基本使用方法的講解到此結束，想知道分支和提交的修改等更高難度的操作，請閱讀「進階篇」吧！</p>
+                        </div>
+                        <!-- .Entry-content -->
+                    </div>
+
+                    <div id="console" class="Entry-content" style="display:none;">
+                        <h2>主控台</h2>
+                        <p><span class="Tutorial1">在tutorial的操作</span><br>執行以下的命令。</p>
+                        <pre class="Mg-b30">$ <b>git pull origin master</b>
+Username: <b>&LT;用戶名&GT;</b>
+Password: <b>&LT;密碼&GT;</b>
+remote: Counting objects: 5, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0)
+Unpacking objects: 100% (3/3), done.
+From https://nulab.backlog.jp/git/BLG/tutorial
+ * branch            master     -&gt; FETCH_HEAD
+Auto-merging sample.txt
+CONFLICT (content): Merge conflict in sample.txt
+Automatic merge failed; fix conflicts and then commit the result.</pre>
+
+                        <p>接著，系統會出現合併時發生衝突的警告訊息。</p>
+                        <p><span class="Tutorial1">在tutorial的操作</span><br>打開sample.txt檔案確認內容，Git將用標示行顯示內容發生衝突的地方，如下圖：</p>
+                        <pre class="Mg-b30">連猴子都懂的Git命令
+add 修改加入索引
+<b>&LT;&LT;&LT;&LT;&LT;&LT;&LT; HEAD
+commit 記錄索引的狀態
+=======
+pull 取得遠端數據庫的內容
+&GT;&GT;&GT;&GT;&GT;&GT;&GT; 4c0182374230cd6eaa93b30049ef2386264fe12a</b></pre>
+                        <p><span class="Tutorial1">在tutorial的操作</span></p>
+                        <p class="Align-right Mg-b0"><img class="Align-bottom" src="../img/post/img_modified_mascot.png" alt="請修改"></p>
+                        <p class="Mg-t40">將衝突的地方進行修改，導入兩方的修改，刪除多餘的標示行。請參考下圖：</p>
+                        <pre class="Mg-b30">連猴子都懂的Git命令
+add 修改加入索引
+<b>commit 記錄索引的狀態
+pull 取得遠端數據庫的內容</b></pre>
+                        <p><span class="Tutorial1">在tutorial的操作</span><br>當修改完內容，解決了檔案的衝突，則需要執行提交。</p>
+                        <pre class="Mg-b30">$ <b>git add sample.txt</b>
+$ <b>git commit -m "合併"</b>
+[master d845b81] 合併</pre>
+                        <p>這樣就完成了從遠端數據庫導入最新的修改內容了。</p>
+                        <p><span class="Tutorial1">在tutorial的操作</span><br>我們可以使用log命令來確認數據庫的修改歷史。若加入 --graph 參數可以圖表方式顯示分支歷史。加入--oneline 簡化輸出訊息，以簡潔方式呈現。</p>
+                        <pre class="Mg-b30">$ <b>git log --graph --oneline</b>
+*   d845b81 合併
+|\
+| * 4c01823 添加pull的說明
+* | 95f15c9 添加commit的說明
+|/
+* 3da09c1 添加add的說明
+* ac56e47 first commit
+</pre>
+                        <p>這表示兩個修改歷史已經成功合併且建立了新的合併提交。</p>
+                        <p>我們現在可以放心地push變更到遠端數據庫，不用擔心會產生任何衝突。</p>
+                        <div class="Important Mg-b60">
+                            <p>大家辛苦啦！關於Git基本使用方法的講解到此結束，想知道分支和提交的修改等更高難度的操作，請閱讀「進階篇」吧！</p>
+                        </div>
+
+                        <!-- .Entry-content -->
+                    </div>
+
+                    
+                    <footer class="Paging Cf">
+                        <div class="Nav-prev">
+                            <a href="intro6_1.html">
+                                <span class="Bg"></span>
+                                <span><b>上一頁</b></span>
+
+                            </a>
+                        </div>
+                        <!-- .Paging -->
+                    </footer>
+
+                </article>
+                <!-- #main -->
+            </div>
+            <div id="sub" role="complementary">
+                <aside id="introSideMenu" class="Side-menu s_sideMenu">
+                    <section>
+                        <h1>Git的基本介紹</h1>
+                        <ul>
+                            <li><a href="intro1_1.html">Git版本控制</a></li>
+                            <li><a href="intro1_2.html">使用數據庫管理歷史記錄</a></li>
+                            <li><a href="intro1_3.html">記錄修改的提交</a></li>
+                            <li><a href="intro1_4.html">工作目錄與索引</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>教學1 開始使用Git</h1>
+                        <ul>
+                            <li><a href="intro2_1.html">安裝Git</a></li>
+                            <li><a href="intro2_2.html">初始設定</a></li>
+                            <li><a href="intro2_3.html">新建數據庫</a></li>
+                            <li><a href="intro2_4.html">提交檔案</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>共享數據庫</h1>
+                        <ul>
+                            <li><a href="intro3_1.html">Push到遠端數據庫</a></li>
+                            <li><a href="intro3_2.html">複製遠端數據庫</a></li>
+                            <li><a href="intro3_3.html">從遠端數據庫執行Pull</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>教學2 共享數據庫</h1>
+                        <ul>
+                            <li><a href="intro4_1.html">在貝格樂上建立遠端數據庫</a></li>
+                            <li><a href="intro4_2.html">Push到遠端數據庫</a></li>
+                            <li><a href="intro4_3.html">複製遠端數據庫</a></li>
+                            <li><a href="intro4_4.html">在複製的本地端數據庫執行push</a></li>
+                            <li><a href="intro4_5.html">從遠端數據庫執行Pull</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>合併修改記錄</h1>
+                        <ul>
+                            <li><a href="intro5_1.html">合併修改記錄</a></li>
+                            <li><a href="intro5_2.html">解決衝突</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>教學3 合併修改記錄</h1>
+                        <ul>
+                            <li><a href="intro6_1.html">製造衝突</a></li>
+                            <li><a href="intro6_2.html">解決衝突</a></li>
+                        </ul>
+                    </section>
+                </aside>
+                <!-- #sub -->
+            </div>
+            <!-- #content -->
+        </div>
+
+        
+        <footer id="footer" role="contentinfo">
+            <div class="Row">
+                <div class="Col Right">
+                    <div class="Languages">
+                        <div class="Languages-inner Clearfix">
+                            <span class="Pick-language">繁體中文</span>
+                            <span class="Pick-down"></span>
+                            <select id="languageMenu" name="languageMenu" class="Language-menu" onchange="selectLanguage(this)">
+                                <option value="http://backlogtool.com/git-tutorial/en/">English</option>
+                                <option value="http://www.backlog.jp/git-guide/">日本語</option>
+                                <option value="http://backlogtool.com/git-tutorial/cn/">简体中文</option>
+                                <option selected value="../index.html">繁體中文</option>
+                                <option value="http://backlogtool.com/git-tutorial/kr/">한국어</option>
+                                <option value="http://backlogtool.com/git-tutorial/vn/">Tiếng Việt</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- .Languages-area -->
+                    <ul class="Social-icon">
+                        <li><a href="https://www.facebook.com/BacklogTW" target="_blank">
+                        <img src="../img/common/icon/ico_facebook.png" srcset="../img/common/icon/ico_facebook.png 1x, ../img/common/icon/ico_facebook@2x.png 2x" width="36" height="36" alt="Facebook"></a></li><li><a href="https://twitter.com/BacklogTaiwan" target="_blank"><img src="../img/common/icon/ico_twitter.png"
+                    srcset="../img/common/icon/ico_twitter.png 1x, ../img/common/icon/ico_twitter@2x.png 2x" width="36" height="36" alt="twitter"></a></li>
+                    </ul>
+                </div>
+                <div class="Col Left">
+                    <div class="Powered">Powered by<br>
+                        <a href="http://backlogtool.com/tw/" target="_blank" title="貝格樂">
+                        <img src="../img/common/logo_backlog.png" srcset="../img/common/logo_backlog.png 1x, ../img/common/logo_backlog@2x.png 2x" width="142" height="42" alt="貝格樂 - 所有團隊成員的專案管理工具"></a>
+                    </div>
+                    <p class="Nulab">Copyright &copy; 2004-2017 Nulab Inc. All rights reserved. </p>
+                </div>
+            </div>
+            <!-- #footer -->
+        </footer>
+
+        <div class="Top-link"><a id="topLink" href="#">UP</a></div>
+        <div id="showUserVoicePopupTab" data-uv-trigger="smartvote">
+            <a href="http://feedback.backlogtool.com/forums/277856" title="">Git入門的反饋</a>
+        </div>
+
+        <!-- #container -->
+    </div>
+    
+    <script src="../../../../ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/lib/jquery.js"><\/script>')</script>
+    <script type="text/javascript" src="../js/jquery.config.js"></script>
+    <script type="text/javascript">
+        function selectLanguage(lang) {
+            window.location.href = lang.options[lang.selectedIndex].value;
+        }
+    </script>
+    <script>(function(){
+            var uv=document.createElement('script');
+            uv.type='text/javascript';
+            uv.async=true;
+            uv.src='../../../../widget.uservoice.com/Yox3591xmDUTIQiafbmDQA.js';
+            var s=document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(uv,s);
+            uv.onload = uv.onreadystatechange = function(){
+                var state = uv.readyState;
+                if(!state || /complete|loaded/.test(state)){
+                    UserVoice.push(['set', {
+                        forum_id: '277856'
+                    }]);
+                    uv.onload = uv.onreadystatechange = null;
+                }
+            }
+        })();</script>
+    <script type="text/javascript">
+        var tweetBtn, googleBtn, likeBtn;
+        tweetBtn =
+            '<li class="Twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://backlogtool.com/git-guide/tw/" data-text="連猴子都能懂的Git入門指南 | 貝格樂（Backlog）" data-via="BacklogTaiwan" data-lang="zh-tw">推文</a>'
+            + '<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?"http":"https";if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document, "script", "twitter-wjs");<\/script></li>';
+        likeBtn =
+            '<li class="Facebook"><div id="fb-root"></div>'
+            +'<script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.async = true; js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&appId=417292271624387&version=v2.0"; fjs.parentNode.insertBefore(js, fjs); }(document, "script", "facebook-jssdk"));<\/script>'
+            +'<div class="fb-like" data-href="http://backlogtool.com/git-guide/tw/" data-send="false" data-layout="button_count" data-width="110" data-show-faces="false"></div></li>';
+        googleBtn =
+            '<li class="Google"><g:plusone size="medium" href="http://backlogtool.com/git-guide/tw/"></g:plusone>'
+            +'<script type="text/javascript"> window.___gcfg = {lang: "zh-TW"}; (function() { var po = document.createElement("script"); po.type = "text/javascript"; po.async = true; po.src = "https://apis.google.com/js/plusone.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(po, s); })(); <\/script></li>';
+
+        setTimeout(function() {
+            $('#socials').append(tweetBtn + likeBtn + googleBtn);
+        },1000);
+    </script>
+    <script type="text/javascript" src="../js/lib/select2.js"></script>
+    <script type="text/javascript">
+        // Selectbox カスタマイズ
+        $("#changeSystem").select2();
+    </script>
+    <script type="text/javascript" src="../js/lib/jquery.systemSelector.js"></script>
+    <script type="text/javascript">
+        // 環境切り替え
+        $("#changeSystem").installSelector();
+        $(document).ready( function(){
+            var systemType = $.systemSelector.init();
+            $("#changeSystem").select2("val",systemType);
+        } );
+    </script>
+</body>
+
+<!-- Mirrored from backlogtool.com/git-tutorial/tw/intro/intro6_2.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 01 Sep 2017 09:07:18 GMT -->
+</html>

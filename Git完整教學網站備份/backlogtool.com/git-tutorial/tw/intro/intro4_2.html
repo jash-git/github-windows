@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<!--[if IE 7]> <html class="Ie7 Ie" dir="ltr" lang="zh-TW"> <![endif]-->
+<!--[if IE 8]> <html class="Ie8 Ie" dir="ltr" lang="zh-TW"> <![endif]-->
+<!--[if IE 9]> <html class="Ie9 Ie" dir="ltr" lang="zh-TW"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html dir="ltr" lang="zh-TW" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml"> <!--<![endif]-->
+
+<!-- Mirrored from backlogtool.com/git-tutorial/tw/intro/intro4_2.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 01 Sep 2017 09:07:01 GMT -->
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="Git, 版本控制，甘特圖，燃盡圖，專案管理，subversion,貝格樂">
+	<meta name="description" content="Push到遠端數據庫【教學2 共享數據庫】  | 歡迎來到超級簡單的Git入門指南，讓我們一起學習如何使用Git版本控制系統吧！">
+    <title>Push到遠端數據庫【教學2 共享數據庫】  | 連猴子都能懂的Git入門指南  | 貝格樂（Backlog）</title>
+    <meta property="og:title" content="Push到遠端數據庫【教學2 共享數據庫】  | 連猴子都能懂的Git入門指南  | 貝格樂（Backlog）">
+    <meta property="og:description" content="Push到遠端數據庫【教學2 共享數據庫】  | 歡迎來到超級簡單的Git入門指南，讓我們一起學習如何使用Git版本控制系統吧！">
+    <meta property="og:url" content="http://backlogtool.com/git-guide/tw/intro/intro4_2.html">
+    <meta property="og:image" content="../ogp_dft.png">
+    <meta property="og:type" content="article">
+    <meta property="fb:app_id" content="417292271624387">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" media="all" href="../style.css">
+    <link rel="stylesheet" type="text/css" media="all" href="../css/select2/select2.css">
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'../../../../www.googletagmanager.com/gtm5445.html?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TSQPXBL');</script>
+<!-- End Google Tag Manager -->    <!--[if lt IE 9]>
+        <script src="./../js/lib/html5.js" type="text/javascript"></script>
+    <![endif]-->
+</head>
+<body>
+    
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TSQPXBL"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->    <div id="container">
+        
+        <header id="header" role="banner">
+            <div class="Inner">
+                <h1><a href="../index.html">連猴子都能懂的Git入門指南</a></h1>
+                <a class="btn-contents" href="../contents/index.html"><span>目錄</span><span class="Bg"></span></a>
+                <ul id="socials" class="Socials Cf">
+                    <!-- #socials -->
+                </ul>
+
+                <nav id="nav">
+                    <ul class="Cf">
+                        <li><a href="intro1_1.html">入門篇</a></li>
+                        <li><a href="../stepup/stepup1_1.html">進階篇</a></li>
+                        <li><a href="../reference/index.html">Git命令快速參考</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- #header -->
+        </header>
+
+        <div id="content">
+            <div id="main" role="main">
+                <article class="Post">
+                    <header class="Entry-header">
+                        <p class="Category-ttl">教學2 共享數據庫</p>
+                        <h1 class="Entry-ttl">Push到遠端數據庫</h1>
+                        <p class="Description">在教學1，我們建立了一個本地端數據庫，現在我們來試試將它push到「tutorial」吧。</p>
+
+                        <!-- .Entry-header -->
+                    </header>
+
+                    <div class="Change-content-area Cf">
+                        <form action="#">
+                            <label for="changeSystem">選擇您使用的電腦系統</label>
+                            <select id="changeSystem" name="changeSystem" class="Change-system">
+                                <option value="mac">選擇Mac</option>
+                                <option value="windows">選擇Windows</option>
+                                <option value="console">選擇主控台</option>
+                            </select>
+                        </form>
+                    </div>
+
+                    <div id="windows" class="Entry-content" style="display:none;">
+                        <h2>Windows</h2>
+                        <p>按右鍵選取「TortoiseGit」目錄，點一下「推送」。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro4_2_1_win.png" width="580" alt="點一下「推送」"></p>
+                        <p>顯示以下畫面後點一下「管理」。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro4_2_2_win.png" alt="點一下「管理」"></p>
+                        <p>顯示以下畫面後，在遠端中輸入"origin"，「URL」輸入在上一頁建立的遠端數據庫的URL，點一下「增加/保存」。在遠端目錄裡就會增加「origin」，接著點「確定」。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro4_2_3_win.png" alt="輸入遠端數據庫的URL，點一下「增加/保存」。"></p>
+                        <div class="Tips Mg-b60">
+                            <p class="subhead">Tips</p>
+                            <p>在主控台，執行push或pull命令時想省略遠端數據庫名稱的話，會使用origin名稱作為遠端數據庫。因此一般都會為遠端數據庫命名為origin。</p>
+                        </div>
+                        <p>在push畫面的遠端項目選擇origin，點一下「確認」。</p>
+                        <p>將要求輸入用戶名稱，請輸入貝格樂的用戶名稱。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro4_2_4_win.png" alt="輸入Backlog的用戶名"></p>
+                        <p>接下來會要求輸入密碼，請輸入貝格樂的密碼。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro4_2_5_win.png" alt="輸入Backlog的密碼"></p>
+<!--                        <div class="Tips Mg-b40">
+                            <p class="subhead">Tips</p>
+                            <p>このユーザ名とパスワードの入力は毎回求められます。<br />もし、ユーザ名とパスワードを記録させておきたい場合は git-credential-winstore というツールを下のURLからダウンロードし、インストールしてください。<br />URL : <a href="https://github.com/anurse/git-credential-winstore" target="_blank">https://github.com/anurse/git-credential-winstore</a></p>
+                        </div>-->
+                        <p>當顯示以下畫面時，就表示push成功了。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro4_2_6_win.png" alt="如果顯示成功就是成功了"></p>
+                        <p>請打開貝格樂的Git頁面，就會看到系統已經增加最近更新的push項目喔。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro4_2_9.png" alt="增加最近更新的push項目"></p>
+                        <p>Push的檔案也已添加到遠端數據庫的檔案列表中。</p>
+                        <p class="Mg-b60"><img src="../img/post/intro/capture_intro4_2_10.png" alt="增加了push到數據庫的檔案"></p>
+                        <div class="Important Mg-b60">
+                            <p>接下來 複製遠端數據庫哦！</p>
+                        </div>
+                        <!-- .Entry-content -->
+                    </div>
+
+                    <div id="mac" class="Entry-content" style="display:none;">
+                        <h2>Mac</h2>
+                        <p>啟動SourceTree，選擇「tutorial」數據庫。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro4_2_1_mac.png" alt="選擇「tutorial」數據庫"></p>
+                        <p>點一下數據庫操作畫面的工具欄右邊的「Settings」。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro4_2_1_2_mac.png" alt="點一下數據庫操作畫面的工具欄右邊的「Settings」"></p>
+                        <p>顯示以下畫面後點一下「Add」。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro4_2_2_mac.png" alt="點一下「Add」"></p>
+                        <p>「Remote name」輸入「origin」，「URL/path」輸入在上一頁建立的遠端數據庫的URL，點一下「OK」。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro4_2_3_mac.png" alt="輸入遠端數據庫的URL，點一下「OK」。"></p>
+                        <p>這時會出現認證視窗，請輸入貝格樂的用戶名稱和密碼。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro4_2_4_mac.png" alt="輸入Backlog的用戶名稱和密碼"></p>
+                        <p>遠端列表裡會增加剛才登錄的「origin」。這樣，就準備好要push到貝格樂的數據庫囉。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro4_2_5_mac.png" alt="增加了「origin」"></p>
+                        <div class="Tips Mg-b60">
+                            <p class="subhead">Tips</p>
+                            <p>在主控台，執行push或pull命令時想省略遠端數據庫名稱的話，會使用origin名稱作為遠端數據庫。因此一般都會為遠端數據庫命名為origin。</p>
+                        </div>
+                        <p>接著開始push吧。要執行push，請點一下tutorial數據庫操作畫面工具欄的「Push」。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro4_2_6_mac.png" alt="點一下tutorial數據庫操作畫面的工具欄的「Push」"></p>
+                        <p>顯示對話窗口後，勾選「master」後點一下「OK」。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro4_2_7_mac.png" alt="勾選「master」選框後點擊「OK」鍵"></p>
+                        <p>完成push後，在提交的說明裡會增加代表遠端數據庫的 "origin/master"。</p>
+                        <p class="Mg-b50"><img src="../img/post/intro/capture_intro4_2_8_mac.png" alt="增加代表遠端數據庫的 origin/master"></p>
+                        <p>請打開貝格樂的Git頁面，就會看到系統已經增加最近更新的push項目喔。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro4_2_9.png" alt="增加最近更新的push項目"></p>
+                        <p>Push的檔案也已添加到遠端數據庫的檔案列表中。</p>
+                        <p class="Mg-b60"><img src="../img/post/intro/capture_intro4_2_10.png" alt="增加了push到數據庫的檔案"></p>
+                        <div class="Important Mg-b60">
+                            <p>接下來 複製遠端數據庫哦！</p>
+                        </div>
+                        <!-- .Entry-content -->
+                    </div>
+
+                    <div id="console" class="Entry-content" style="display:none;">
+                        <h2>主控台</h2>
+                        <p>您可以為遠端數據庫取個適合的別名或暱稱，這樣以後push的時候就不需要每次都輸入冗長的遠端數據庫的地址了。<br />在這個教學中，我們將遠端數據庫名稱註冊為" Orgin"。</p>
+                        <p>首先，請使用remote命令增加一個遠端數據庫。&lt;name&gt;指向遠端數據庫登錄名稱、&lt;url&gt;指向遠端數據庫的URL，請參考以下：</p>
+                        <pre class="Mg-b30">$ git remote add &LT;name&GT; &LT;url&GT;</pre>
+                        <p>執行以上命令，使用在上一頁建立的遠端數據庫的URL，並將其命名為origin。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro4_2_1_cui.png" alt="遠端數據庫的URL命名為origin"></p>
+                        <pre class="Mg-b30">$ <b>git remote add origin <i>https://[your_space_id].backlog.jp/git/[your_project_key]/tutorial.git</i></b></pre>
+                        <div class="Tips Mg-b60">
+                            <p class="subhead">Tips</p>
+                            <p>在主控台，執行push或pull命令時想省略遠端數據庫名稱的話，會使用origin名稱作為遠端數據庫。因此一般都會為遠端數據庫命名為origin。</p>
+                        </div>
+                        <p>當要push變更到遠端數據庫時，請使用push命令，加上&lt;repository&gt;指定要push的地址，&lt;refspec&gt;指定要push的分支。關於『分支』我們會在進階篇再做更詳細的講解。</p>
+                        <pre class="Mg-b30">$ git push &LT;repository&GT; &LT;refspec&GT;...</pre>
+                        <p>執行以下命令將push提交到遠端數據庫origin，在執行提交時指定參數 -u 項目，之後就可省略指定分支名稱。但當push到空白的遠端數據庫時，您就必須指定遠端數據庫和分支的名稱，千萬不能省略。</p>
+                        <p>過程中系統會要求輸入用戶名稱和密碼，請輸入貝格樂的用戶名稱和密碼。</p>
+                        <pre class="Mg-b30">$ <b>git push -u origin master</b>
+Username: <b>&LT;用戶名&GT;</b>
+Password: <b>&LT;密碼&GT;</b>
+Counting objects: 3, done.
+Writing objects: 100% (3/3), 245 bytes, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://nulab.backlog.jp/git/BLG/tutorial.git
+ * [new branch]      master -&gt; master</pre>
+                        <p>請打開貝格樂的Git頁面，就會看到系統已經增加最近更新的push項目喔。</p>
+                        <p class="Mg-b40"><img src="../img/post/intro/capture_intro4_2_9.png" alt="增加最近更新的push項目"></p>
+                        <p>Push的檔案也已添加到遠端數據庫的檔案列表中。</p>
+                        <p class="Mg-b60"><img src="../img/post/intro/capture_intro4_2_10.png" alt="增加了push到數據庫的檔案"></p>
+                        <div class="Important Mg-b60">
+                            <p>接下來 複製遠端數據庫哦！</p>
+                        </div>
+                        <!-- .Entry-content -->
+                    </div>
+
+                    
+                    <footer class="Paging Cf">
+                        <div class="Nav-prev">
+                            <a href="intro4_1.html">
+                                <span class="Bg"></span>
+                                <span><b>上一頁</b></span>
+
+                            </a>
+                        </div>
+                        <div class="Nav-next">
+                            <a href="intro4_3.html">
+                                <span class="Bg"></span>
+                                <span><b>下一頁</b></span>
+                            </a>
+                        </div>
+                        <!-- .Paging -->
+                    </footer>
+
+                </article>
+                <!-- #main -->
+            </div>
+            <div id="sub" role="complementary">
+                <aside id="introSideMenu" class="Side-menu s_sideMenu">
+                    <section>
+                        <h1>Git的基本介紹</h1>
+                        <ul>
+                            <li><a href="intro1_1.html">Git版本控制</a></li>
+                            <li><a href="intro1_2.html">使用數據庫管理歷史記錄</a></li>
+                            <li><a href="intro1_3.html">記錄修改的提交</a></li>
+                            <li><a href="intro1_4.html">工作目錄與索引</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>教學1 開始使用Git</h1>
+                        <ul>
+                            <li><a href="intro2_1.html">安裝Git</a></li>
+                            <li><a href="intro2_2.html">初始設定</a></li>
+                            <li><a href="intro2_3.html">新建數據庫</a></li>
+                            <li><a href="intro2_4.html">提交檔案</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>共享數據庫</h1>
+                        <ul>
+                            <li><a href="intro3_1.html">Push到遠端數據庫</a></li>
+                            <li><a href="intro3_2.html">複製遠端數據庫</a></li>
+                            <li><a href="intro3_3.html">從遠端數據庫執行Pull</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>教學2 共享數據庫</h1>
+                        <ul>
+                            <li><a href="intro4_1.html">在貝格樂上建立遠端數據庫</a></li>
+                            <li><a href="intro4_2.html">Push到遠端數據庫</a></li>
+                            <li><a href="intro4_3.html">複製遠端數據庫</a></li>
+                            <li><a href="intro4_4.html">在複製的本地端數據庫執行push</a></li>
+                            <li><a href="intro4_5.html">從遠端數據庫執行Pull</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>合併修改記錄</h1>
+                        <ul>
+                            <li><a href="intro5_1.html">合併修改記錄</a></li>
+                            <li><a href="intro5_2.html">解決衝突</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>教學3 合併修改記錄</h1>
+                        <ul>
+                            <li><a href="intro6_1.html">製造衝突</a></li>
+                            <li><a href="intro6_2.html">解決衝突</a></li>
+                        </ul>
+                    </section>
+                </aside>
+                <!-- #sub -->
+            </div>
+            <!-- #content -->
+        </div>
+
+        
+        <footer id="footer" role="contentinfo">
+            <div class="Row">
+                <div class="Col Right">
+                    <div class="Languages">
+                        <div class="Languages-inner Clearfix">
+                            <span class="Pick-language">繁體中文</span>
+                            <span class="Pick-down"></span>
+                            <select id="languageMenu" name="languageMenu" class="Language-menu" onchange="selectLanguage(this)">
+                                <option value="http://backlogtool.com/git-tutorial/en/">English</option>
+                                <option value="http://www.backlog.jp/git-guide/">日本語</option>
+                                <option value="http://backlogtool.com/git-tutorial/cn/">简体中文</option>
+                                <option selected value="../index.html">繁體中文</option>
+                                <option value="http://backlogtool.com/git-tutorial/kr/">한국어</option>
+                                <option value="http://backlogtool.com/git-tutorial/vn/">Tiếng Việt</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- .Languages-area -->
+                    <ul class="Social-icon">
+                        <li><a href="https://www.facebook.com/BacklogTW" target="_blank">
+                        <img src="../img/common/icon/ico_facebook.png" srcset="../img/common/icon/ico_facebook.png 1x, ../img/common/icon/ico_facebook@2x.png 2x" width="36" height="36" alt="Facebook"></a></li><li><a href="https://twitter.com/BacklogTaiwan" target="_blank"><img src="../img/common/icon/ico_twitter.png"
+                    srcset="../img/common/icon/ico_twitter.png 1x, ../img/common/icon/ico_twitter@2x.png 2x" width="36" height="36" alt="twitter"></a></li>
+                    </ul>
+                </div>
+                <div class="Col Left">
+                    <div class="Powered">Powered by<br>
+                        <a href="http://backlogtool.com/tw/" target="_blank" title="貝格樂">
+                        <img src="../img/common/logo_backlog.png" srcset="../img/common/logo_backlog.png 1x, ../img/common/logo_backlog@2x.png 2x" width="142" height="42" alt="貝格樂 - 所有團隊成員的專案管理工具"></a>
+                    </div>
+                    <p class="Nulab">Copyright &copy; 2004-2017 Nulab Inc. All rights reserved. </p>
+                </div>
+            </div>
+            <!-- #footer -->
+        </footer>
+
+        <div class="Top-link"><a id="topLink" href="#">UP</a></div>
+        <div id="showUserVoicePopupTab" data-uv-trigger="smartvote">
+            <a href="http://feedback.backlogtool.com/forums/277856" title="">Git入門的反饋</a>
+        </div>
+
+        <!-- #container -->
+    </div>
+    
+    <script src="../../../../ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/lib/jquery.js"><\/script>')</script>
+    <script type="text/javascript" src="../js/jquery.config.js"></script>
+    <script type="text/javascript">
+        function selectLanguage(lang) {
+            window.location.href = lang.options[lang.selectedIndex].value;
+        }
+    </script>
+    <script>(function(){
+            var uv=document.createElement('script');
+            uv.type='text/javascript';
+            uv.async=true;
+            uv.src='../../../../widget.uservoice.com/Yox3591xmDUTIQiafbmDQA.js';
+            var s=document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(uv,s);
+            uv.onload = uv.onreadystatechange = function(){
+                var state = uv.readyState;
+                if(!state || /complete|loaded/.test(state)){
+                    UserVoice.push(['set', {
+                        forum_id: '277856'
+                    }]);
+                    uv.onload = uv.onreadystatechange = null;
+                }
+            }
+        })();</script>
+    <script type="text/javascript">
+        var tweetBtn, googleBtn, likeBtn;
+        tweetBtn =
+            '<li class="Twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://backlogtool.com/git-guide/tw/" data-text="連猴子都能懂的Git入門指南 | 貝格樂（Backlog）" data-via="BacklogTaiwan" data-lang="zh-tw">推文</a>'
+            + '<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?"http":"https";if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document, "script", "twitter-wjs");<\/script></li>';
+        likeBtn =
+            '<li class="Facebook"><div id="fb-root"></div>'
+            +'<script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.async = true; js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&appId=417292271624387&version=v2.0"; fjs.parentNode.insertBefore(js, fjs); }(document, "script", "facebook-jssdk"));<\/script>'
+            +'<div class="fb-like" data-href="http://backlogtool.com/git-guide/tw/" data-send="false" data-layout="button_count" data-width="110" data-show-faces="false"></div></li>';
+        googleBtn =
+            '<li class="Google"><g:plusone size="medium" href="http://backlogtool.com/git-guide/tw/"></g:plusone>'
+            +'<script type="text/javascript"> window.___gcfg = {lang: "zh-TW"}; (function() { var po = document.createElement("script"); po.type = "text/javascript"; po.async = true; po.src = "https://apis.google.com/js/plusone.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(po, s); })(); <\/script></li>';
+
+        setTimeout(function() {
+            $('#socials').append(tweetBtn + likeBtn + googleBtn);
+        },1000);
+    </script>
+    <script type="text/javascript" src="../js/lib/select2.js"></script>
+    <script type="text/javascript">
+        // Selectbox カスタマイズ
+        $("#changeSystem").select2();
+    </script>
+    <script type="text/javascript" src="../js/lib/jquery.systemSelector.js"></script>
+    <script type="text/javascript">
+        // 環境切り替え
+        $("#changeSystem").installSelector();
+        $(document).ready( function(){
+            var systemType = $.systemSelector.init();
+            $("#changeSystem").select2("val",systemType);
+        } );
+    </script>
+</body>
+
+<!-- Mirrored from backlogtool.com/git-tutorial/tw/intro/intro4_2.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 01 Sep 2017 09:07:06 GMT -->
+</html>
