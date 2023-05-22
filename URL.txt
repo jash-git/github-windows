@@ -4,3 +4,7 @@ https://www.youtube.com/watch?v=QqwCgEovim0
 --------------
 裝 01
 裝 02
+---------------
+https://git-scm.com/ [git windows 軟體]
+https://tortoisegit.org/download/ [tortoisegit windows 軟體]
+https://desktop.github.com/ [GitHubDesktop 軟體]
